@@ -131,7 +131,7 @@ export class GameController {
       if (navigator.share) {
         await navigator.share(shareData);
       } else {
-        navigator.clipboard.writeText(shareData.text + "\n\n" + shareData.url);
+        navigator.clipboard.writeText(shareData.text + "\n" + shareData.url);
         const shareNotifier = elOrThrow("share-notifier");
         shareNotifier.classList.remove("fade-out");
         show(shareNotifier);
@@ -150,6 +150,9 @@ export class GameController {
   private loadCurrentGame() {
     Store.saveInProgressGame(this.manager);
     this.setScore();
+    if (this.manager.numGamesCompleted() > 0) {
+      Store.markAsPlayed();
+    }
     if (this.manager.isFinished()) {
       this.finishGame();
       return;

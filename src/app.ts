@@ -6,6 +6,7 @@ import { setupModals } from "./ui/modals";
 import { setupShare } from "./ui/setupShare";
 import { Store } from "./ui/store";
 import { currentGameNumber } from "./util/dateHelpers";
+import { show } from "./util/domHelpers";
 
 window.addEventListener("DOMContentLoaded", function () {
   setupModals();
@@ -30,4 +31,8 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   }
   gc.setup(manager);
+  // Don't show this on top of the share modal.
+  if (!share && Store.isFirstPlay()) {
+    show("info-modal");
+  }
 });

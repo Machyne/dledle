@@ -43,4 +43,12 @@ export class Store {
     }
     return settingsWithDefaults(JSON.parse(savedSettings));
   }
+
+  static isFirstPlay(): boolean {
+    return !localStorage.getItem("hasPlayed");
+  }
+
+  static markAsPlayed(): void {
+    return localStorage.setItem("hasPlayed", "true");
+  }
 }
