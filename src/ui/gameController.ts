@@ -124,7 +124,7 @@ export class GameController {
     const guessFraction = this.manager.makeGuessFractionString();
     const shareData = {
       title: `Dledle #${gameNumber}`,
-      text: `Dledle #${gameNumber} ${guessFraction}\n${this.manager.resultsSoFar(true)}`,
+      text: `Dledle #${gameNumber} ${guessFraction}\n${this.manager.resultsSoFar(true)}\n`,
       url: this.shareUrl,
     };
     try {
