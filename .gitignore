@@ -1,0 +1,13 @@
+# Node.js
+node_modules/
+npm-debug.log
+
+# OS generated files
+.DS_Store
+
+# local HTTPS cert
+localhost-key.pem
+localhost.pem
+
+# build output
+dist

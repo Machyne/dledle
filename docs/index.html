@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Dledle</title>
+    <link rel="stylesheet" href="css/app-ASNG6JBT.css">
+    <script defer="defer" src="js/app-AGKHV4OQ.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:bold,regular">
+    <link rel="shortcut icon" href="static/favicon-196x196-b3f132c7.png">
+    <link rel="icon" sizes="196x196" href="static/favicon-196x196-b3f132c7.png">
+    <link rel="icon" sizes="48x48" href="static/favicon-48x48-c73ef5e3.png">
+    <link rel="icon" sizes="32x32" href="static/favicon-32x32-da8ed738.png">
+    <link rel="icon" sizes="16x16" href="static/favicon-16x16-2bb6edc4.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon-9ce5ff05.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="static/apple-touch-icon-ipad-0b7fc02d.png">
+    <link rel="manifest" href="static/site-abbf4d35.webmanifest">
+</head>
+
+<body>
+    <header>
+        <span id="game-num">1</span>
+        <h1>Dledle</h1>
+        <a id="info-link" href="#" title="Info">❓</a>
+        <a id="settings-link" href="#" title="Settings" class="hidden">⚙️</a>
+    </header>
+    <main>
+        <ul id="game-list"></ul>
+        <h2 class="game-only">The next 'dle to play is <span id="next-dle">Dledle</span>!</h2>
+        <p class="game-only">
+            Click the link below to play the game. When you're done, copy the results via the game's
+            "Share" button, and paste them into the box below.
+        </p>
+        <a id="next-dle-link" class="game-only" href="#" target="_blank">Play Dledle</a>
+        <textarea id="dle-results" class="game-only" rows="6" placeholder="Paste your game results here!"></textarea>
+        <p id="error" class="hidden game-only">
+            There was an error reading your game results. Please try copying and pasting the results
+            again. If the problem persists, you can always skip this dle. 🤷
+        </p>
+        <div class="button-box game-only">
+            <button id="skip">Skip</button>
+            <button id="submit">Submit Results</button>
+        </div>
+        <p>Your score: <span id="full-score"></span></p>
+        <p id="win-early" class="hidden">
+            You solved today's Dledle! Share your result at any time, or keep playing the bonus games!
+        </p>
+        <p id="win-final" class="hidden">You solved today's Dledle! Share your results below!</p>
+        <p id="lose-final" class="hidden">
+            You didn't solve today's Dledle. Better luck next time! Click below to share your results.
+        </p>
+        <div id="share-container" class="hidden">
+            <button id="share">📤 Share</button>
+            <p id="share-notifier" class="hidden fade-out">Copied to clipboard!</p>
+            <button id="view-full-results">📊 Show Full Results</button>
+        </div>
+    </main>
+    <div id="info-modal" class="modal hidden">
+        <section class="modal-content">
+            <a class="close" href="#">×</a>
+            <h2>🤔 What is Dledle?</h2>
+            <p>Dledle is a daily game composed of daily games. 🤯</p>
+            <strong>The goal is to beat at least 3️⃣ of the 5️⃣ randomly selected 'dle games.</strong>
+            <p>
+                If you win before playing all five 'dles, you can optionally keep playing for ⭐️ bonus
+                stars ⭐️!
+            </p>
+            <p>
+                You can skip any 'dle if you want, but you won't get a new one. (skipping essentially
+                counts as a loss)
+            </p>
+            <h2>ℹ️ About Dledle</h2>
+            <p>
+                Dledle is an open source project created as a joke / commentary on the absurd amount of
+                daily 'dle games.
+            </p>
+            <p>
+                To report bugs, suggest features, or contribute to the project, check out the
+                <a href="https://github.com/Machyne/dledle" target="_blank">GitHub page</a>!
+            </p>
+            <p>See a full list of included 'dles <a href="?list=1">here</a>.</p>
+        </section>
+    </div>
+    <div id="settings-modal" class="modal hidden">
+        <section class="modal-content">
+            <a class="close" href="#">×</a>
+            <h2>Settings</h2>
+        </section>
+    </div>
+    <div id="share-modal" class="modal hidden">
+        <section class="modal-content">
+            <a class="close" href="#">×</a>
+            <div id="spoiler-warning">
+                <h2>⚠️ You haven't played this Dledle yet!</h2>
+                <p>
+                    These shared results will show what 'dles are included in today's Dledle, so it may
+                    spoil part of the surprise. 👀 You can view these shared results anyway, if you're okay
+                    with that.
+                </p>
+                <button id="view-spoilers">🔎 View Shared Results</button>
+            </div>
+            <div class="shared-scores hidden"></div>
+        </section>
+    </div>
+    <div id="full-results-modal" class="modal hidden">
+        <section class="modal-content">
+            <a class="close" href="#">×</a>
+            <div class="shared-scores"></div>
+        </section>
+    </div>
+    <div id="dle-list-modal" class="modal hidden">
+        <section class="modal-content">
+            <a class="close" href="#">×</a>
+            <h2>Full list of 'dles:</h2>
+            <ul id="full-dle-list"></ul>
+        </section>
+    </div>
+</body>
+
+</html>
