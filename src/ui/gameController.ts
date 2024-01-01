@@ -154,10 +154,12 @@ export class GameController {
       Store.markAsPlayed();
     }
     if (this.manager.isFinished()) {
+      Store.saveCompletedGame(this.manager);
       this.finishGame();
       return;
     }
     if (this.manager.hasWon()) {
+      Store.saveCompletedGame(this.manager);
       this.earlyWin();
     }
     this.setGameImage();

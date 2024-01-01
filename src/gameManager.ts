@@ -158,15 +158,13 @@ export class GameManager {
     // Each game results in win, near win, loss, or skip: 2 bits per game * 5 games = 10 bits so this fits in 3 b64 characters (18 bits).
     for (let i = 0; i < this.results.length; i++) {
       const result = this.results[i];
-      if (result === null) {
+      if (result === null || result === skip) {
+        // Skip is 0 so we can ignore it. Treat uncompleted games as a skip.
         continue;
       }
-      // Skip is 0 so we can ignore it.
-      if (result !== skip) {
-        const gameResult = result as GameResult;
-        gameResults.push((result as GameResult).serializedResult);
-        encodedScores += scoreCodes[gameResult.score] * 4 ** i;
-      }
+      const gameResult = result as GameResult;
+      gameResults.push((result as GameResult).serializedResult);
+      encodedScores += scoreCodes[gameResult.score] * 4 ** i;
     }
     const encoded = intToBase64(this.gameNumber, gameNumberWidth) + intToBase64(encodedScores);
     return [encoded, ...gameResults].join("=");

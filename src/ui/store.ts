@@ -6,6 +6,12 @@ type InProgressGameData = {
   encodedManager: string;
 };
 
+type CompletedGames = {
+  [gameNumber: number]: {
+    encodedManager: string;
+  };
+};
+
 export class Store {
   static getInProgressGame(currentGameNumber: number) {
     const savedGameData = localStorage.getItem("currentGame");
@@ -50,5 +56,16 @@ export class Store {
 
   static markAsPlayed(): void {
     return localStorage.setItem("hasPlayed", "true");
+  }
+
+  static saveCompletedGame(manager: GameManager) {
+    // Save this for now, probably use it for stats later.
+    // The encoding is tiny so I'm not concerned about wasting storage.
+    const existingSave = localStorage.getItem("completedGames");
+    const completedGames = existingSave ? (JSON.parse(existingSave) as CompletedGames) : {};
+    completedGames[manager.gameNumber] = {
+      encodedManager: manager.encode(),
+    };
+    localStorage.setItem("completedGames", JSON.stringify(completedGames));
   }
 }
