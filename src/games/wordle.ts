@@ -22,7 +22,7 @@ export class Wordle extends BaseGame {
 
   _buildResultRegex(): RegExp {
     return new RegExp(
-      `Wordle (\\d+) ([1-6X])\\/6(\\*?)\\s+((?:${fiveSquaresRegex}\\s+){1,6})`,
+      `Wordle (\\d+) ([1-6X])\\/6(\\*?)\\s+((?:${fiveSquaresRegex}\\s*){1,6})`,
       "u",
     );
   }
@@ -30,10 +30,14 @@ export class Wordle extends BaseGame {
   serializeResult(gameResult: RegExpMatchArray) {
     const [, gameNumber, gameScore, hasStar, guessesBlock] = gameResult;
     const isWin = gameScore !== "X";
+    const numGuesses = isWin ? parseInt(gameScore) : 6;
     // First encode the game number, win-or-not, and star-or-not.
     let encoded = intToBase64(4 * parseInt(gameNumber) + (hasStar ? 2 : 0) + (isWin ? 1 : 0));
     // Next encode the guesses.
     const guesses = splitEmojiLines(guessesBlock);
+    if (guesses.length !== numGuesses) {
+      throw new Error(`Invalid number of guesses: ${guesses.length}`);
+    }
     encoded += emojiRowsToB64({
       emojiLines: guesses,
       values: greenYellowGreyValues,

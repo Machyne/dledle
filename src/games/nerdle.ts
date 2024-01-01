@@ -25,7 +25,7 @@ export class Nerdle extends BaseGame {
 
   _buildResultRegex(): RegExp {
     return new RegExp(
-      `nerdlegame (\\d+) ([1-6X])\\/6\\s+((?:${emojiToRegexUnion(squareList)}{8}\\s+){1,6})`,
+      `nerdlegame (\\d+) ([1-6X])\\/6\\s+((?:${emojiToRegexUnion(squareList)}{8}\\s*){1,6})`,
       "u",
     );
   }
@@ -33,10 +33,14 @@ export class Nerdle extends BaseGame {
   serializeResult(gameResult: RegExpMatchArray) {
     const [, gameNumber, gameScore, guessesBlock] = gameResult;
     const isWin = gameScore !== "X";
+    const numGuesses = isWin ? parseInt(gameScore) : 6;
     // First encode the game number, win-or-not, and star-or-not.
     let encoded = intToBase64(2 * parseInt(gameNumber) + (isWin ? 1 : 0));
     // Next encode the guesses.
     const guesses = splitEmojiLines(guessesBlock);
+    if (guesses.length !== numGuesses) {
+      throw new Error(`Invalid number of guesses: ${guesses.length}`);
+    }
     encoded += emojiRowsToB64({
       emojiLines: guesses,
       values: squareValues,

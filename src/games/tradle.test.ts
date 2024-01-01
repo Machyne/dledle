@@ -1,4 +1,5 @@
 import { GameScore } from "../baseGame";
+import { runGameTests } from "../util/testUtils";
 import { Tradle } from "./tradle";
 
 const sampleOddRowWin = `
@@ -37,29 +38,26 @@ const sampleLoss = `
 `;
 
 describe("Tradle", () => {
-  const tradle = new Tradle();
-
-  it("can parse with extra link text", () => {
-    const match = tradle.resultRegex.exec(sampleOddRowWin + "\nhttps://oec.world/en/tradle");
-    expect(match).not.toBeNull();
-    const { score, serializedResult } = tradle.serializeResult(match!);
-    expect(score).toEqual(GameScore.Win);
-    expect(tradle.deserialize(serializedResult)).toEqual(sampleOddRowWin.trim());
-  });
-
-  for (const [name, input, expectedScore] of [
-    ["sampleEvenRowWin", sampleEvenRowWin, GameScore.Win],
-    ["sampleOddRowWin", sampleOddRowWin, GameScore.Win],
-    ["sampleNearWin", sampleNearWin, GameScore.NearWin],
-    ["sampleLoss", sampleLoss, GameScore.Loss],
-  ] as Array<[string, string, GameScore]>) {
-    it(`should serialize and deserialize ${name} correctly`, () => {
-      const match = tradle.resultRegex.exec(input);
-      expect(match).not.toBeNull();
-      const { score, serializedResult } = tradle.serializeResult(match!);
-
-      expect(score).toEqual(expectedScore);
-      expect(tradle.deserialize(serializedResult)).toEqual(input.trim());
-    });
-  }
+  runGameTests(new Tradle(), [
+    {
+      name: "sampleEvenRowWin",
+      input: sampleEvenRowWin,
+      expectedScore: GameScore.Win,
+    },
+    {
+      name: "sampleOddRowWin",
+      input: sampleOddRowWin,
+      expectedScore: GameScore.Win,
+    },
+    {
+      name: "sampleNearWin",
+      input: sampleNearWin,
+      expectedScore: GameScore.NearWin,
+    },
+    {
+      name: "sampleLoss",
+      input: sampleLoss,
+      expectedScore: GameScore.Loss,
+    },
+  ]);
 });
