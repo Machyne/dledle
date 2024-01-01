@@ -8,10 +8,28 @@ const sampleWin = `
 🎮 🟥 🟩 ⬜ ⬜ ⬜ ⬜
 `;
 
+const sampleWinWithYellow = `
+#GuessTheGame #597
+
+🎮 🟨 🟩 ⬜ ⬜ ⬜ ⬜
+`;
+
 const sampleLoss = `
 #GuessTheGame #595
 
 🎮 🟥 🟥 🟥 🟥 🟥 🟥
+`;
+
+const sampleNearWin = `
+#GuessTheGame #597
+
+🎮 🟥 🟥 🟥 🟥 🟥 🟨
+`;
+
+const sampleAllYellow = `
+#GuessTheGame #597
+
+🎮 🟨 🟨 🟨 🟨 🟨 🟨
 `;
 
 describe("GuessTheGame", () => {
@@ -22,9 +40,24 @@ describe("GuessTheGame", () => {
       expectedScore: GameScore.Win,
     },
     {
+      name: "sampleWinWithYellow",
+      input: sampleWinWithYellow,
+      expectedScore: GameScore.Win,
+    },
+    {
       name: "sampleLoss",
       input: sampleLoss,
       expectedScore: GameScore.Loss,
+    },
+    {
+      name: "sampleNearWin",
+      input: sampleNearWin,
+      expectedScore: GameScore.NearWin,
+    },
+    {
+      name: "sampleAllYellow",
+      input: sampleAllYellow,
+      expectedScore: GameScore.NearWin,
     },
   ]);
 });
