@@ -12,6 +12,16 @@ Murdle for 12/24/2023
 👤
 `;
 
+const sampleLongWin = `
+Murdle for 1/2/2024
+
+👤🔪🏡❓     🕰️
+✅✅✅✅     0️⃣:1️⃣2️⃣
+
+⚖️
+👤
+`;
+
 const sampleLoss = `
 Murdle for 12/24/2023
 
@@ -32,11 +42,26 @@ Murdle for 12/24/2023
 ❌
 `;
 
+const sampleLongNearWin = `
+Murdle for 1/2/2024
+
+👤🔪🏡❓     🕰️
+✅✅❌✅     0️⃣:1️⃣1️⃣
+
+⚖️
+❌
+`;
+
 describe("Murdle", () => {
   runGameTests(new Murdle(), [
     {
       name: "sampleWin",
       input: sampleWin,
+      expectedScore: GameScore.Win,
+    },
+    {
+      name: "sampleLongWin",
+      input: sampleLongWin,
       expectedScore: GameScore.Win,
     },
     {
@@ -47,6 +72,11 @@ describe("Murdle", () => {
     {
       name: "sampleNearWin",
       input: sampleNearWin,
+      expectedScore: GameScore.NearWin,
+    },
+    {
+      name: "sampleLongNearWin",
+      input: sampleLongNearWin,
       expectedScore: GameScore.NearWin,
     },
   ]);

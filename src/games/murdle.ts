@@ -14,7 +14,10 @@ const winEmoji = "👤";
 const greenCheck = "✅";
 const redX = "❌";
 const bigSpace = " ".repeat(5);
-const guessHeaderLine = ["👤🔪🏡", "🕰️"].join(bigSpace);
+const guessHeaderShort = "👤🔪🏡";
+const guessHeaderOptional = "❓";
+const guessHeaderSuffix = "🕰️";
+const maxGuesses = 8; // Future proof this since we need extra storage anyway.
 
 export class Murdle extends BaseGame {
   get name(): string {
@@ -26,11 +29,12 @@ export class Murdle extends BaseGame {
   }
 
   _buildResultRegex(): RegExp {
-    // TODO does the month ever go to a single digit?
-    const dateLine = "Murdle for ([0-9]{2}/[0-9]{2}/[0-9]{4})";
+    const dateLine = "Murdle for ([0-9]{1,2}/[0-9]{1,2}/[0-9]{4})";
     const timeRegex = `(${numberEmojiRegex}{1,2}:${numberEmojiRegex}{2})`;
-    const guessLine = `((?:${greenCheck}|${redX}){3})\\s+${timeRegex}`;
+    const guessHeaderLine = `${guessHeaderShort}(?:${guessHeaderOptional})?\\s+${guessHeaderSuffix}`;
+    const guessLine = `((?:${greenCheck}|${redX}){3,4})\\s+${timeRegex}`;
     const footer = `${preWinEmoji}\\s+(?:${winEmoji}|${redX})`;
+
     return new RegExp([dateLine, guessHeaderLine, guessLine, footer].join("\\s+"), "u");
   }
 
@@ -44,49 +48,91 @@ export class Murdle extends BaseGame {
     // First encode the game date.
     let encoded = datePartsToBase64(dateParts);
 
-    // Then encode the guesses. Each game is 3 x 1-bit guesses plus a minutes/seconds count.
-    // 60 seconds * 60 minutes * 8 < 64^3, so this fits in our 3 b64 characters.
-    const guessBits = guesses.reduce(
-      (sum, guess, idx) => sum + (guess === greenCheck ? 1 << idx : 0),
-      0,
-    );
     const minutes = emojiToNumber(timeParts.slice(0, timeParts.length - 3));
     const seconds = emojiToNumber(timeParts.slice(timeParts.length - 2));
-    encoded += intToBase64(guessBits + seconds * 8 + minutes * 60 * 8);
+
+    // Murdle was released without support for a fourth "Motive" dimension.
+    // Branch on encoding that to be backwards compatible since we need two more bits of info
+    // and that doesn't fit into the old method anyway.
+    if (guesses.length === 3) {
+      // In this case, each game is 3 x 1-bit guesses plus a minutes/seconds count.
+      // 60 seconds * 60 minutes * 16 < 64^3, so this fits in our 3 b64 characters.
+      const guessBits = guesses.reduce(
+        (sum, guess, idx) => sum + (guess === greenCheck ? 1 << idx : 0),
+        0,
+      );
+      encoded += intToBase64(guessBits + seconds * 8 + minutes * 60 * 8);
+    } else {
+      if (guesses.length > maxGuesses) {
+        throw new Error(`Too many guesses: ${guesses}`);
+      }
+      // Otherwise each game is 4 x 1-bit guesses plus minutes/seconds.
+      // Combining these doesn't get us anywhere.
+      encoded += intToBase64(minutes, 1);
+      encoded += intToBase64(seconds, 1);
+      const guessBits = guesses.reduce(
+        (sum, guess, idx) => sum + (guess === greenCheck ? 1 << idx : 0),
+        0,
+      );
+      // 3bit length + up to 8bit guesses = 11 bits, so we can fit this in 2 b64 characters.
+      encoded += intToBase64(guessBits * maxGuesses + guesses.length, 2);
+    }
 
     const numCorrect = guesses.filter((guess) => guess === greenCheck).length;
     const score =
-      numCorrect === 3 ? GameScore.Win : numCorrect === 2 ? GameScore.NearWin : GameScore.Loss;
+      numCorrect === guesses.length
+        ? GameScore.Win
+        : numCorrect === guesses.length - 1
+          ? GameScore.NearWin
+          : GameScore.Loss;
     return { score, serializedResult: encoded };
   }
 
   deserialize(serializedResult: string) {
-    if (serializedResult.length !== DEFAULT_WORD_WIDTH * 2) {
+    if (
+      serializedResult.length !== DEFAULT_WORD_WIDTH * 2 &&
+      serializedResult.length !== DEFAULT_WORD_WIDTH + 4
+    ) {
       throw new Error(`Invalid Murdle result: ${serializedResult}`);
     }
     let intResult: number;
     let date: DateParts;
     [date, serializedResult] = nextDateParts(serializedResult);
-    [intResult, serializedResult] = nextInt(serializedResult);
-    const guessBits = intResult % 8;
-    intResult = Math.floor(intResult / 8);
-    const seconds = intResult % 60;
-    const minutes = Math.floor(intResult / 60);
-    const guesses: Array<string> = [];
-    for (let idx = 0; idx < 3; ++idx) {
-      const isCorrect = guessBits & (1 << idx);
-      guesses.push(isCorrect ? greenCheck : redX);
+    const parseGuessBits = (guessBits: number, numGuesses: number) => {
+      const guesses: Array<string> = [];
+      for (let idx = 0; idx < numGuesses; ++idx) {
+        const isCorrect = guessBits & (1 << idx);
+        guesses.push(isCorrect ? greenCheck : redX);
+      }
+      return guesses;
+    };
+    let minutes: number;
+    let seconds: number;
+    let guesses: Array<string>;
+    if (serializedResult.length === DEFAULT_WORD_WIDTH) {
+      [intResult, serializedResult] = nextInt(serializedResult);
+      const guessBits = intResult % 8;
+      intResult = Math.floor(intResult / 8);
+      seconds = intResult % 60;
+      minutes = Math.floor(intResult / 60);
+      guesses = parseGuessBits(guessBits, 3);
+    } else {
+      [minutes, serializedResult] = nextInt(serializedResult, 1);
+      [seconds, serializedResult] = nextInt(serializedResult, 1);
+      [intResult, serializedResult] = nextInt(serializedResult, 2);
+      const numGuesses = intResult % maxGuesses;
+      const guessBits = Math.floor(intResult / maxGuesses);
+      guesses = parseGuessBits(guessBits, numGuesses);
     }
-    // 3 yes bits (instead of counting the emoji)
-    const isWin = guessBits === 7;
 
-    const [mm, dd, yyyy] = [
-      date.month.toString().padStart(2, "0"),
-      date.day.toString().padStart(2, "0"),
-      date.year.toString(),
-    ];
+    const isWin = guesses.every((guess) => guess === greenCheck);
     const timeStr = `${numberToEmoji(minutes)}:${numberToEmoji(seconds, 2)}`;
-    return `Murdle for ${mm}/${dd}/${yyyy}\n\n${guessHeaderLine}\n${guesses.join(
+    const guessHeaderLine =
+      guessHeaderShort +
+      (guesses.length === 3 ? "" : guessHeaderOptional) +
+      bigSpace +
+      guessHeaderSuffix;
+    return `Murdle for ${date.month}/${date.day}/${date.year}\n\n${guessHeaderLine}\n${guesses.join(
       "",
     )}${bigSpace}${timeStr}\n\n${preWinEmoji}\n${isWin ? winEmoji : redX}`;
   }
