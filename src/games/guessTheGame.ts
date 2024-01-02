@@ -7,7 +7,7 @@ const baseArgs = {
   prefixEmoji: "🎮",
   maxGuesses: 6,
   gameName: "#GuessTheGame",
-  greySquare: emojiSquares.lightGrey,
+  greySquare: emojiSquares.white,
   numNewlines: 2,
 };
 const { serializeResult, deserialize } = simpleGuessCountGame(baseArgs);
@@ -15,8 +15,8 @@ const squareRegex = emojiToRegexUnion([
   emojiSquares.red,
   emojiSquares.green,
   emojiSquares.yellow,
-  emojiSquares.grey,
-  emojiSquares.lightGrey,
+  emojiSquares.black,
+  emojiSquares.white,
 ]);
 
 export class GuessTheGame extends BaseGame {

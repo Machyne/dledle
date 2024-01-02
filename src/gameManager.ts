@@ -15,7 +15,7 @@ const resultChars = {
   skip: "❌",
   noResultYet: "❔",
   bonusWin: "⭐️",
-  bonusNonWin: emojiSquares.grey,
+  bonusNonWin: emojiSquares.black,
 };
 
 const scoreCodes = {

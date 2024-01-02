@@ -34,7 +34,7 @@ describe("gameList", () => {
     setMockDate(ymd(FIRST_GAME_DATE.year - 1, FIRST_GAME_DATE.month, FIRST_GAME_DATE.day));
     expect(validGamesToday()).toEqual([]);
     setMockDate(FIRST_GAME_DATE);
-    expect(validGamesToday().map((game) => game.name)).toEqual([
+    const launchTitles = [
       "Artle",
       "Costcodle",
       "Framed",
@@ -45,6 +45,17 @@ describe("gameList", () => {
       "Tradle",
       "Wordle",
       "Worldle",
-    ]);
+    ];
+    expect(
+      validGamesToday()
+        .map((game) => game.name)
+        .sort(),
+    ).toEqual(launchTitles);
+    setMockDate(ymd(2024, 1, 2));
+    expect(
+      validGamesToday()
+        .map((game) => game.name)
+        .sort(),
+    ).toEqual(["Swiftle", ...launchTitles].sort());
   });
 });

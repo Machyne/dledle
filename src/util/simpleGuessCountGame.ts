@@ -5,8 +5,8 @@ import { emojiSquares, emojiToRegexUnion, splitEmoji } from "../util/emoji";
 const squareRegex = emojiToRegexUnion([
   emojiSquares.red,
   emojiSquares.green,
-  emojiSquares.grey,
-  emojiSquares.lightGrey,
+  emojiSquares.black,
+  emojiSquares.white,
 ]);
 
 export type SimpleGuessCountGame = {

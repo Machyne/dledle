@@ -16,7 +16,7 @@ export function emojiSquareScaleToNumber(guessChars: Array<string>) {
   return result;
 }
 
-export function numberToEmojiSquareScale(num: number, padChar: string = emojiSquares.grey) {
+export function numberToEmojiSquareScale(num: number, padChar: string = emojiSquares.black) {
   if (num < 0 || num > 10) {
     throw new Error(`Invalid number: ${num}`);
   }

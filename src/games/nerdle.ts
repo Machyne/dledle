@@ -7,12 +7,12 @@ const rowsPerB64Word = 2;
 const b64WordWidth = 5;
 
 const squareValues = {
-  [emojiSquares.grey]: 0,
-  [emojiSquares.lightGrey]: 0,
+  [emojiSquares.black]: 0,
+  [emojiSquares.white]: 0,
   [emojiSquares.purple]: 1,
   [emojiSquares.green]: 2,
 };
-const squareList = [emojiSquares.grey, emojiSquares.purple, emojiSquares.green];
+const squareList = [emojiSquares.black, emojiSquares.purple, emojiSquares.green];
 
 export class Nerdle extends BaseGame {
   get name(): string {

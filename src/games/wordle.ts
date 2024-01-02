@@ -1,15 +1,16 @@
 import { BaseGame, GameScore } from "../baseGame";
 import { DEFAULT_WORD_WIDTH, intToBase64, nextInt } from "../util/base64";
-import {
-  emojiSquares,
-  fiveSquaresRegex,
-  greenYellowGrey,
-  greenYellowGreyValues,
-  splitEmojiLines,
-} from "../util/emoji";
+import { emojiSquares, fiveSquaresRegex, splitEmojiLines } from "../util/emoji";
 import { b64ToEmojiRows, emojiRowsToB64 } from "../util/gameHelpers";
 
 const rowsPerB64Word = 2;
+const greenYellowGrey = [emojiSquares.black, emojiSquares.yellow, emojiSquares.green];
+const greenYellowGreyValues: Record<string, number> = {
+  "⬛": 0,
+  "⬜": 0,
+  "🟨": 1,
+  "🟩": 2,
+};
 
 export class Wordle extends BaseGame {
   get name(): string {

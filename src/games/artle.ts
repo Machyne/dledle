@@ -6,7 +6,7 @@ const { regex, serializeResult, deserialize } = simpleGuessCountGame({
   prefixEmoji: "🎨",
   maxGuesses: 4,
   gameName: "Artle",
-  greySquare: emojiSquares.lightGrey,
+  greySquare: emojiSquares.white,
 });
 
 export class Artle extends BaseGame {

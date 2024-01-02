@@ -82,7 +82,7 @@ export class Tradle extends BaseGame {
         [intResult, serializedResult] = nextInt(serializedResult, guessEncodingWidth);
       }
       const closeness = Math.floor(intResult / 11 ** pow) % 11;
-      guesses.push(numberToEmojiSquareScale(closeness, emojiSquares.lightGrey));
+      guesses.push(numberToEmojiSquareScale(closeness, emojiSquares.white));
     }
     return `#Tradle #${gameNumber} ${isWin ? numGuesses : "X"}/6\n${guesses.join("\n")}`;
   }

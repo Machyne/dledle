@@ -36,19 +36,12 @@ export const arrows = {
 };
 
 export const emojiSquares = {
-  grey: "⬛" as const,
-  lightGrey: "⬜" as const,
+  black: "⬛" as const,
+  white: "⬜" as const,
   yellow: "🟨" as const,
   green: "🟩" as const,
   red: "🟥" as const,
   purple: "🟪" as const,
-};
-export const greenYellowGrey = [emojiSquares.grey, emojiSquares.yellow, emojiSquares.green];
-export const greenYellowGreyValues: Record<string, number> = {
-  "⬛": 0,
-  "⬜": 0,
-  "🟨": 1,
-  "🟩": 2,
 };
 export const fiveSquaresRegex = "(?:⬛|⬜|🟨|🟩){5}";
 

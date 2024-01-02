@@ -8,6 +8,7 @@ import { GuessTheGame } from "./games/guessTheGame";
 import { Listed } from "./games/listed";
 import { Murdle } from "./games/murdle";
 import { Nerdle } from "./games/nerdle";
+import { Swiftle } from "./games/swiftle";
 import { Tradle } from "./games/tradle";
 import { Wordle } from "./games/wordle";
 import { Worldle } from "./games/worldle";
@@ -16,6 +17,7 @@ import {
   FIRST_GAME_DATE,
   currentGameNumber,
   gameNumberForDate,
+  ymd,
 } from "./util/dateHelpers";
 
 // A game and the date it was released.
@@ -31,6 +33,8 @@ export const allGames: Array<GameAndDate> = [
   [new Tradle(), FIRST_GAME_DATE],
   [new Wordle(), FIRST_GAME_DATE],
   [new Worldle(), FIRST_GAME_DATE],
+  // Added after launch:
+  [new Swiftle(), ymd(2024, 1, 2)],
 ];
 
 export function validGamesToday() {
