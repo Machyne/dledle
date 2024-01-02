@@ -46,16 +46,10 @@ describe("gameList", () => {
       "Wordle",
       "Worldle",
     ];
-    expect(
-      validGamesToday()
-        .map((game) => game.name)
-        .sort(),
-    ).toEqual(launchTitles);
+    expect(validGamesToday().map((game) => game.name)).toEqual(launchTitles);
     setMockDate(ymd(2024, 1, 2));
-    expect(
-      validGamesToday()
-        .map((game) => game.name)
-        .sort(),
-    ).toEqual(["Swiftle", ...launchTitles].sort());
+    expect(validGamesToday().map((game) => game.name)).toEqual(
+      ["CultureTag", "Swiftle", ...launchTitles].sort(),
+    );
   });
 });

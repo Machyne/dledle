@@ -45,6 +45,13 @@ export const emojiSquares = {
 };
 export const fiveSquaresRegex = "(?:⬛|⬜|🟨|🟩){5}";
 
+export const emojiCircles = {
+  white: "⚪" as const,
+  yellow: "🟡" as const,
+  green: "🟢" as const,
+  red: "🔴" as const,
+};
+
 const numbers = "0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣";
 export const numberEmoji = splitEmoji(numbers);
 export const numberEmojiRegex = emojiToRegexUnion(numberEmoji);

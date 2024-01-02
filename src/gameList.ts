@@ -3,6 +3,7 @@ import seedrandom from "seedrandom";
 import { BaseGame } from "./baseGame";
 import { Artle } from "./games/artle";
 import { Costcodle } from "./games/costcodle";
+import { CultureTag } from "./games/cultureTag";
 import { Framed } from "./games/framed";
 import { GuessTheGame } from "./games/guessTheGame";
 import { Listed } from "./games/listed";
@@ -34,6 +35,7 @@ export const allGames: Array<GameAndDate> = [
   [new Wordle(), FIRST_GAME_DATE],
   [new Worldle(), FIRST_GAME_DATE],
   // Added after launch:
+  [new CultureTag(), ymd(2024, 1, 2)],
   [new Swiftle(), ymd(2024, 1, 2)],
 ];
 
