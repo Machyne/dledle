@@ -124,14 +124,15 @@ export class GameController {
     const guessFraction = this.manager.makeGuessFractionString();
     const shareData = {
       title: `Dledle #${gameNumber}`,
-      text: `Dledle #${gameNumber} ${guessFraction}\n${this.manager.resultsSoFar(true)}\n`,
-      url: this.shareUrl,
+      text: `Dledle #${gameNumber} ${guessFraction}\n${this.manager.resultsSoFar(true)}\n\n${
+        this.shareUrl
+      }`,
     };
     try {
-      if (navigator.share) {
+      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
         await navigator.share(shareData);
       } else {
-        navigator.clipboard.writeText(shareData.text + "\n" + shareData.url);
+        navigator.clipboard.writeText(shareData.text);
         const shareNotifier = elOrThrow("share-notifier");
         shareNotifier.classList.remove("fade-out");
         show(shareNotifier);
