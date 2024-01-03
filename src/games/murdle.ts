@@ -33,7 +33,7 @@ export class Murdle extends BaseGame {
     const timeRegex = `(${numberEmojiRegex}{1,2}:${numberEmojiRegex}{2})`;
     const guessHeaderLine = `${guessHeaderShort}(?:${guessHeaderOptional})?\\s+${guessHeaderSuffix}`;
     const guessLine = `((?:${greenCheck}|${redX}){3,4})\\s+${timeRegex}`;
-    const footer = `${preWinEmoji}\\s+(?:${winEmoji}|${redX})`;
+    const footer = `.*${preWinEmoji}\\s+(?:${winEmoji}|${redX})`;
 
     return new RegExp([dateLine, guessHeaderLine, guessLine, footer].join("\\s+"), "u");
   }

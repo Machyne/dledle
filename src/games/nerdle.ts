@@ -20,7 +20,7 @@ export class Nerdle extends BaseGame {
   }
 
   get link(): string {
-    return "https://www.nytimes.com/games/wordle/index.html";
+    return "https://nerdlegame.com/";
   }
 
   _buildResultRegex(): RegExp {
