@@ -285,6 +285,22 @@ button:disabled {
   margin-top: 0.5em;
 }
 
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 0 solid transparent;
+}
+td,
+th {
+  padding: 0 0.25em;
+  text-align: right;
+}
+td:nth-child(1),
+th:nth-child(1) {
+  padding: 0 0.25em;
+  text-align: left;
+}
+
 @media screen and (max-width: 640px) {
   body {
     padding: 1em 0.75em;

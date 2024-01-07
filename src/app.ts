@@ -2,11 +2,12 @@ import { ALLOWED_MISSES, todaysGames } from "./gameList";
 import { GameManager } from "./gameManager";
 import { showFullDleList } from "./ui/fullDleList";
 import { GameController } from "./ui/gameController";
+import { setupGameStats } from "./ui/gameStats";
 import { setupModals } from "./ui/modals";
 import { setupShare } from "./ui/setupShare";
 import { Store } from "./ui/store";
 import { currentGameNumber } from "./util/dateHelpers";
-import { show } from "./util/domHelpers";
+import { el, show } from "./util/domHelpers";
 
 window.addEventListener("DOMContentLoaded", function () {
   setupModals();
@@ -35,4 +36,10 @@ window.addEventListener("DOMContentLoaded", function () {
   if (!share && Store.isFirstPlay()) {
     show("info-modal");
   }
+
+  el<HTMLAnchorElement>("stats-link")?.addEventListener("click", (event) => {
+    event.preventDefault();
+    setupGameStats(gameNumber);
+    show("stats-modal");
+  });
 });

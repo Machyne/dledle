@@ -4,9 +4,10 @@ import { base64ToInt, intToBase64, nextInt } from "./util/base64";
 import { emojiSquares } from "./util/emoji";
 
 type Skip = { isSkip: true };
-const skip: Skip = { isSkip: true };
+export const SKIP: Skip = { isSkip: true };
 type VariableResult = GameResult | Skip | null;
 export type GameResultOrSkip = Partial<GameResult> & Partial<Skip>;
+type VRUnion = GameResultOrSkip | null;
 
 const resultChars = {
   win: emojiSquares.green,
@@ -67,8 +68,16 @@ export class GameManager {
 
   hasWon(): boolean {
     return (
-      this.results.filter((r) => (r as null | GameResult)?.score === GameScore.Win).length >=
+      this.results.filter((r) => (r as VRUnion)?.score === GameScore.Win).length >=
       this.requiredWins
+    );
+  }
+
+  winStars(): number {
+    return Math.max(
+      0,
+      this.results.filter((r) => (r as VRUnion)?.score === GameScore.Win).length -
+        this.requiredWins,
     );
   }
 
@@ -96,7 +105,7 @@ export class GameManager {
     if (this.isFinished()) {
       throw new Error("No more games");
     }
-    this.results[this.curIdx] = skip;
+    this.results[this.curIdx] = SKIP;
     this.curIdx++;
   }
 
@@ -120,7 +129,7 @@ export class GameManager {
   }
 
   gamesAndResults(): Array<[BaseGame, GameResult | Skip]> {
-    return this.games.map((game, idx) => [game, this.results[idx] ?? skip]);
+    return this.games.map((game, idx) => [game, this.results[idx] ?? SKIP]);
   }
 
   resultsSoFar(skipRemaining = false): string {
@@ -130,7 +139,7 @@ export class GameManager {
       const hasWon = winsSoFar >= this.games.length - this.allowedMisses;
       if (result === null && !skipRemaining) {
         ret += resultChars.noResultYet;
-      } else if ((result === null && skipRemaining) || result === skip) {
+      } else if ((result === null && skipRemaining) || result === SKIP) {
         ret += hasWon ? resultChars.bonusNonWin : resultChars.skip;
       } else {
         const score = (result as GameResult).score;
@@ -158,7 +167,7 @@ export class GameManager {
     // Each game results in win, near win, loss, or skip: 2 bits per game * 5 games = 10 bits so this fits in 3 b64 characters (18 bits).
     for (let i = 0; i < this.results.length; i++) {
       const result = this.results[i];
-      if (result === null || result === skip) {
+      if (result === null || result === SKIP) {
         // Skip is 0 so we can ignore it. Treat uncompleted games as a skip.
         continue;
       }

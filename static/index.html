@@ -35,6 +35,7 @@
     <header>
       <span id="game-num">1</span>
       <h1>Dledle</h1>
+      <a id="stats-link" href="#" title="Stats">📊</a>
       <a id="info-link" href="#" title="Info">❓</a>
       <a id="settings-link" href="#" title="Settings" class="hidden">⚙️</a>
     </header>
@@ -74,6 +75,54 @@
         <button id="view-full-results">📊 Show Full Results</button>
       </div>
     </main>
+    <div id="stats-modal" class="modal hidden">
+      <section class="modal-content">
+        <a class="close" href="#">&times;</a>
+        <h2>📊 Dledle Stats</h2>
+        <table>
+          <tr>
+            <td>▶️ Days Played:</td>
+            <td id="stats-games-played"></td>
+          </tr>
+          <tr>
+            <td>🟩 Wins:</td>
+            <td id="stats-games-won"></td>
+          </tr>
+          <tr>
+            <td>⭐️ Star Wins:</td>
+            <td id="stats-star-wins"></td>
+          </tr>
+          <tr>
+            <td>🌟 Double Star Wins:</td>
+            <td id="stats-double-star-wins"></td>
+          </tr>
+          <tr>
+            <td>⛓️ Longest Win Streak:</td>
+            <td id="stats-max-win-streak"></td>
+            <td id="stats-max-win-streak-text"></td>
+          </tr>
+          <tr>
+            <td>🔗 Current Win Streak:</td>
+            <td id="stats-current-win-streak"></td>
+            <td id="stats-current-win-streak-text"></td>
+          </tr>
+        </table>
+        <h3>Results by dle</h3>
+        <table id="stats-dle-table">
+          <thead>
+            <tr>
+              <th>Dle Name</th>
+              <th title="Wins">🟩</th>
+              <th title="Near Wins">🟨</th>
+              <th title="Losses">🟥</th>
+              <th title="Skips">⏭️</th>
+              <th titel="Total">∑</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </div>
     <div id="info-modal" class="modal hidden">
       <section class="modal-content">
         <a class="close" href="#">&times;</a>
