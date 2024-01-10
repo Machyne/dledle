@@ -12,10 +12,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" sizes="48x48" href="static/favicon-48x48-c73ef5e3.png">
+    <link rel="icon" sizes="16x16" href="static/favicon-16x16-2bb6edc4.png">
     <link rel="shortcut icon" href="static/favicon-196x196-b3f132c7.png">
     <link rel="icon" sizes="196x196" href="static/favicon-196x196-b3f132c7.png">
-    <link rel="icon" sizes="16x16" href="static/favicon-16x16-2bb6edc4.png">
-    <link rel="icon" sizes="48x48" href="static/favicon-48x48-c73ef5e3.png">
     <link rel="icon" sizes="32x32" href="static/favicon-32x32-da8ed738.png">
     <link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon-9ce5ff05.png">
     <link rel="apple-touch-icon" sizes="167x167" href="static/apple-touch-icon-ipad-0b7fc02d.png">
@@ -26,15 +26,16 @@
     <meta property="og:title" content="Dledle">
     <meta property="og:description" content="Dledle is a daily game composed of daily games. 🤯 There is a new, random selection of games to play every day!">
     <!-- JS and CSS -->
-    <script defer="defer" src="js/app-QM7XRZ3J.js" type="application/javascript"></script>
+    <script defer="defer" src="js/app-2MDK34YE.js" type="application/javascript"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:bold,regular">
-    <link rel="stylesheet" href="css/app-ASNG6JBT.css">
+    <link rel="stylesheet" href="css/app-QBNRBNIS.css">
 </head>
 
 <body>
     <header>
         <span id="game-num">1</span>
         <h1>Dledle</h1>
+        <a id="stats-link" href="#" title="Stats">📊</a>
         <a id="info-link" href="#" title="Info">❓</a>
         <a id="settings-link" href="#" title="Settings" class="hidden">⚙️</a>
     </header>
@@ -69,6 +70,56 @@
             <button id="view-full-results">📊 Show Full Results</button>
         </div>
     </main>
+    <div id="stats-modal" class="modal hidden">
+        <section class="modal-content">
+            <a class="close" href="#">×</a>
+            <h2>📊 Dledle Stats</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>▶️ Days Played:</td>
+                        <td id="stats-games-played"></td>
+                    </tr>
+                    <tr>
+                        <td>🟩 Wins:</td>
+                        <td id="stats-games-won"></td>
+                    </tr>
+                    <tr>
+                        <td>⭐️ Star Wins:</td>
+                        <td id="stats-star-wins"></td>
+                    </tr>
+                    <tr>
+                        <td>🌟 Double Star Wins:</td>
+                        <td id="stats-double-star-wins"></td>
+                    </tr>
+                    <tr>
+                        <td>⛓️ Longest Win Streak:</td>
+                        <td id="stats-max-win-streak"></td>
+                        <td id="stats-max-win-streak-text"></td>
+                    </tr>
+                    <tr>
+                        <td>🔗 Current Win Streak:</td>
+                        <td id="stats-current-win-streak"></td>
+                        <td id="stats-current-win-streak-text"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Results by dle</h3>
+            <table id="stats-dle-table">
+                <thead>
+                    <tr>
+                        <th>Dle Name</th>
+                        <th title="Wins">🟩</th>
+                        <th title="Near Wins">🟨</th>
+                        <th title="Losses">🟥</th>
+                        <th title="Skips">⏭️</th>
+                        <th titel="Total">∑</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </div>
     <div id="info-modal" class="modal hidden">
         <section class="modal-content">
             <a class="close" href="#">×</a>
