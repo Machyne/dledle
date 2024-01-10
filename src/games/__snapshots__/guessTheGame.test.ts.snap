@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GuessTheGame serialized data should match snapshot 1`] = `
+{
+  "sampleAllYellow": {
+    "score": "NearWin",
+    "serializedResult": "ZBB_",
+  },
+  "sampleLoss": {
+    "score": "Loss",
+    "serializedResult": "LBB",
+  },
+  "sampleNearWin": {
+    "score": "NearWin",
+    "serializedResult": "ZBBg",
+  },
+  "sampleWin": {
+    "score": "Win",
+    "serializedResult": "NBB",
+  },
+  "sampleWin trimmed": {
+    "score": "Win",
+    "serializedResult": "NBB",
+  },
+  "sampleWin with extra link text": {
+    "score": "Win",
+    "serializedResult": "NBB",
+  },
+  "sampleWinWithYellow": {
+    "score": "Win",
+    "serializedResult": "UBBB",
+  },
+}
+`;

@@ -47,7 +47,7 @@ export function decodeEmoji(
   }
   if (length > 0) {
     if (ret.length > length) {
-      throw new Error(`Encoded emoji too long: ${ret}`);
+      throw new Error(`Encoded emoji too long: ${ret} (length ${ret.length}, expected ${length})`);
     }
     while (ret.length < length) {
       ret.push(lookup[0]);

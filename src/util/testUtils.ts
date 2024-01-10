@@ -33,4 +33,15 @@ export function runGameTests(game: BaseGame, testCases: Array<TestCases>) {
       expect(game.deserialize(serializedResult)).toEqual(expectedOutput ?? input.trim());
     });
   }
+
+  it("serialized data should match snapshot", () => {
+    const data = Object.fromEntries(
+      testCases.map(({ name, input }) => {
+        const match = game.resultRegex.exec(input);
+        expect(match).not.toBeNull();
+        return [name, game.serializeResult(match!)];
+      }),
+    );
+    expect(data).toMatchSnapshot();
+  });
 }

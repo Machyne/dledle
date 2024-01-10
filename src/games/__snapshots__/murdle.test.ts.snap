@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Murdle serialized data should match snapshot 1`] = `
+{
+  "sampleLongNearWin": {
+    "score": "NearWin",
+    "serializedResult": "pFDALcB",
+  },
+  "sampleLongWin": {
+    "score": "Win",
+    "serializedResult": "pFDAM8B",
+  },
+  "sampleLoss": {
+    "score": "Loss",
+    "serializedResult": "gFDBBA",
+  },
+  "sampleNearWin": {
+    "score": "NearWin",
+    "serializedResult": "gFDTBA",
+  },
+  "sampleWin": {
+    "score": "Win",
+    "serializedResult": "gFDXVC",
+  },
+  "sampleWin trimmed": {
+    "score": "Win",
+    "serializedResult": "gFDXVC",
+  },
+  "sampleWin with extra link text": {
+    "score": "Win",
+    "serializedResult": "gFDXVC",
+  },
+}
+`;

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nerdle serialized data should match snapshot 1`] = `
+{
+  "sampleEvenRowWin": {
+    "score": "Win",
+    "serializedResult": "NWAn4ZIF",
+  },
+  "sampleEvenRowWin trimmed": {
+    "score": "Win",
+    "serializedResult": "NWAn4ZIF",
+  },
+  "sampleEvenRowWin with extra link text": {
+    "score": "Win",
+    "serializedResult": "NWAn4ZIF",
+  },
+  "sampleOddRowWin": {
+    "score": "Win",
+    "serializedResult": "PWADOUmEANDAA",
+  },
+}
+`;

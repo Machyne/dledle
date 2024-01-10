@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Costcodle serialized data should match snapshot 1`] = `
+{
+  "sampleEvenRowWin": {
+    "score": "Win",
+    "serializedResult": "aKAAAA",
+  },
+  "sampleEvenRowWin trimmed": {
+    "score": "Win",
+    "serializedResult": "aKAAAA",
+  },
+  "sampleEvenRowWin with extra link text": {
+    "score": "Win",
+    "serializedResult": "aKAAAA",
+  },
+  "sampleLoss": {
+    "score": "Loss",
+    "serializedResult": "fKAVAA",
+  },
+  "sampleNearWin": {
+    "score": "NearWin",
+    "serializedResult": "fKAE5A",
+  },
+  "sampleOddRowWin": {
+    "score": "Win",
+    "serializedResult": "bKAMAA",
+  },
+}
+`;

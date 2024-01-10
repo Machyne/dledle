@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Artle serialized data should match snapshot 1`] = `
+{
+  "sampleLoss": {
+    "score": "Loss",
+    "serializedResult": "BvA",
+  },
+  "sampleWin": {
+    "score": "Win",
+    "serializedResult": "-uA",
+  },
+  "sampleWin trimmed": {
+    "score": "Win",
+    "serializedResult": "-uA",
+  },
+  "sampleWin with extra link text": {
+    "score": "Win",
+    "serializedResult": "-uA",
+  },
+}
+`;

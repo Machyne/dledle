@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Swiftle serialized data should match snapshot 1`] = `
+{
+  "sampleEarlyWin": {
+    "score": "Win",
+    "serializedResult": "4HBBA",
+  },
+  "sampleEarlyWin trimmed": {
+    "score": "Win",
+    "serializedResult": "4HBBA",
+  },
+  "sampleEarlyWin with extra link text": {
+    "score": "Win",
+    "serializedResult": "4HBBA",
+  },
+  "sampleLateWin": {
+    "score": "Win",
+    "serializedResult": "8HBJD",
+  },
+  "sampleLoss": {
+    "score": "Loss",
+    "serializedResult": "9HB8D",
+  },
+  "sampleNearWin": {
+    "score": "NearWin",
+    "serializedResult": "9HBKI",
+  },
+}
+`;

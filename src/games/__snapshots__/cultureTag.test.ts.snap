@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CultureTag serialized data should match snapshot 1`] = `
+{
+  "sampleLoss": {
+    "score": "Loss",
+    "serializedResult": "TKq",
+  },
+  "sampleMaxCode": {
+    "score": "NearWin",
+    "serializedResult": "TK_",
+  },
+  "sampleNearWin": {
+    "score": "NearWin",
+    "serializedResult": "TK6",
+  },
+  "sampleWin": {
+    "score": "Win",
+    "serializedResult": "ZKH",
+  },
+  "sampleWin trimmed": {
+    "score": "Win",
+    "serializedResult": "ZKH",
+  },
+  "sampleWin with extra link text": {
+    "score": "Win",
+    "serializedResult": "ZKH",
+  },
+}
+`;

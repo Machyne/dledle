@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Wordle serialized data should match snapshot 1`] = `
+{
+  "sampleEvenRowWin": {
+    "score": "Win",
+    "serializedResult": "tHAN1c",
+  },
+  "sampleEvenRowWin trimmed": {
+    "score": "Win",
+    "serializedResult": "tHAN1c",
+  },
+  "sampleEvenRowWin with extra link text": {
+    "score": "Win",
+    "serializedResult": "tHAN1c",
+  },
+  "sampleLoss": {
+    "score": "Loss",
+    "serializedResult": "uHAFgClSJ35S",
+  },
+  "sampleNearWin": {
+    "score": "NearWin",
+    "serializedResult": "uHAFgCFvVBmc",
+  },
+  "sampleOddRowWin": {
+    "score": "Win",
+    "serializedResult": "tHABmckHA",
+  },
+}
+`;
