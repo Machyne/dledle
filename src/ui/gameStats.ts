@@ -135,7 +135,7 @@ export function setupGameStats(currentGameNumber: number) {
     dleTable,
   ] = dataElements as Array<HTMLElement>;
 
-  const stats = makeStats(Store.getCompletedGames(), currentGameNumber);
+  const stats = makeStats(Object.values(Store.getCompletedGames()), currentGameNumber);
   gamesPlayedTD.innerHTML = stats.gamesPlayed.toString();
   gamesWonTD.innerHTML = stats.gamesWon.toString();
   starWinsTD.innerHTML = stats.starWins.toString();
@@ -145,6 +145,12 @@ export function setupGameStats(currentGameNumber: number) {
   currentWinStreakTD.innerHTML = (stats.currentWinStreak?.length ?? 0).toString();
   currentWinStreakTextTD.innerHTML = makeStreakText(stats.currentWinStreak);
 
+  for (const child of Array.from(dleTable.children)) {
+    if (child.tagName.toLowerCase() === "thead") {
+      continue;
+    }
+    dleTable.removeChild(child);
+  }
   Object.entries(stats.statsByGame)
     .sort(([name1], [name2]) => name1.localeCompare(name2))
     .forEach(([gameName, gameStats]) => {

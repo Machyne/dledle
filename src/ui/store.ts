@@ -72,11 +72,14 @@ export class Store {
   /**
    * Returns a list of all completed games sorted by game number.
    */
-  static getCompletedGames(): Array<GameManager> {
+  static getCompletedGames(): { [gameNum: string]: GameManager } {
     const existingSave = localStorage.getItem("completedGames");
     const completedGames = existingSave ? (JSON.parse(existingSave) as CompletedGames) : {};
-    return Object.entries(completedGames)
-      .sort(([gameNumber1], [gameNumber2]) => parseInt(gameNumber1) - parseInt(gameNumber2))
-      .map(([, { encodedManager }]) => GameManager.fromEncoded(encodedManager));
+    return Object.fromEntries(
+      Object.entries(completedGames).map(([gameNum, { encodedManager }]) => [
+        gameNum,
+        GameManager.fromEncoded(encodedManager),
+      ]),
+    );
   }
 }

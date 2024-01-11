@@ -122,11 +122,12 @@ export class GameController {
   private async shareListener() {
     const gameNumber = this.manager.gameNumber;
     const guessFraction = this.manager.makeGuessFractionString();
+    const streakIndicator = this.manager.makeStreakIndicatorString();
     const shareData = {
       title: `Dledle #${gameNumber}`,
-      text: `Dledle #${gameNumber} ${guessFraction}\n${this.manager.resultsSoFar(true)}\n\n${
-        this.shareUrl
-      }`,
+      text: `Dledle #${gameNumber} ${guessFraction}${streakIndicator}\n${this.manager.resultsSoFar(
+        true,
+      )}\n\n${this.shareUrl}`,
     };
     try {
       if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {

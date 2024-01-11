@@ -10,7 +10,7 @@ export function displayFullScores(
   const fullScoreHeader = document.createElement("h2");
   fullScoreHeader.innerHTML = `Dledle #${
     gameManager.gameNumber
-  } &nbsp;  ${gameManager.makeGuessFractionString()}`;
+  } &nbsp;  ${gameManager.makeGuessFractionString()}${gameManager.makeStreakIndicatorString()}`;
   container.appendChild(fullScoreHeader);
   const fullScore = document.createElement("p");
   const dledleScore = gameManager.resultsSoFar(true);

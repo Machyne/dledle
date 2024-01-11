@@ -1,5 +1,6 @@
 import { BaseGame, GameResult, GameScore } from "./baseGame";
 import { ALLOWED_MISSES, gamesForGameNumber } from "./gameList";
+import { Store } from "./ui/store";
 import { base64ToInt, intToBase64, nextInt } from "./util/base64";
 import { emojiSquares } from "./util/emoji";
 
@@ -17,6 +18,7 @@ const resultChars = {
   noResultYet: "❔",
   bonusWin: "⭐️",
   bonusNonWin: emojiSquares.black,
+  streakFlame: "🔥",
 };
 
 const scoreCodes = {
@@ -91,6 +93,25 @@ export class GameManager {
       wonAfterGuesses = winIndexes[this.requiredWins - 1] + 1;
     }
     return `${wonAfterGuesses ? wonAfterGuesses.toString() : "X"}/${this.numGames()}`;
+  }
+
+  makeStreakIndicatorString() {
+    if (this.winStars() !== this.allowedMisses) {
+      return "";
+    }
+    const allPastGames = Store.getCompletedGames();
+    let streakLen = 1;
+    for (let previousGameNum = this.gameNumber - 1; previousGameNum > 0; --previousGameNum) {
+      const pastGame = allPastGames[previousGameNum];
+      if (!pastGame || pastGame.winStars() !== pastGame.allowedMisses) {
+        break;
+      }
+      ++streakLen;
+    }
+    if (streakLen === 1) {
+      return "";
+    }
+    return ` ${resultChars.streakFlame.repeat(streakLen)}`;
   }
 
   addNextResult(result: GameResult) {
