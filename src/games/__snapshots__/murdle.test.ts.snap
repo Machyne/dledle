@@ -18,6 +18,10 @@ exports[`Murdle serialized data should match snapshot 1`] = `
     "score": "NearWin",
     "serializedResult": "gFDTBA",
   },
+  "sampleStreakWin": {
+    "score": "Win",
+    "serializedResult": "-FDKy8B",
+  },
   "sampleWin": {
     "score": "Win",
     "serializedResult": "gFDXVC",

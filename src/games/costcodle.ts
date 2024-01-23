@@ -18,7 +18,7 @@ export class Costcodle extends BaseGame {
       emojiToRegexUnion([arrows.u, arrows.d]) +
       emojiToRegexUnion([emojiSquares.red, emojiSquares.yellow]);
     return new RegExp(
-      `Costcodle #(\\d+) ([1-6X])\\/6\\s+((?:${guessStr}\\s*){1,6}${winEmoji}?)`,
+      `Costcodle #(\\d+) ([1-6X])\\/6\\s+((?:${guessStr}\\s*){0,6}${winEmoji}?)`,
       "u",
     );
   }

@@ -22,6 +22,16 @@ Murdle for 1/2/2024
 👤
 `;
 
+const sampleStreakWin = `
+Murdle for 1/23/2024
+
+👤🔪🏡❓     🕰️
+✅✅✅✅     1️⃣0️⃣:5️⃣0️⃣
+
+⚖️
+🧛‍♂️👤
+`;
+
 const sampleLoss = `
 Murdle for 12/24/2023
 
@@ -78,6 +88,12 @@ describe("Murdle", () => {
       name: "sampleLongNearWin",
       input: sampleLongNearWin,
       expectedScore: GameScore.NearWin,
+    },
+    {
+      name: "sampleStreakWin",
+      input: sampleStreakWin,
+      expectedScore: GameScore.Win,
+      expectedOutput: sampleStreakWin.trim().replace("🧛‍♂️", ""),
     },
   ]);
 });

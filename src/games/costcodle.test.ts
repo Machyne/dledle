@@ -15,6 +15,21 @@ Costcodle #95 2/6
 ✅
 `;
 
+const sampleShortWin = `
+Costcodle #125 1/6
+✅
+`;
+
+const sampleLongWin = `
+Costcodle #125 6/6
+⬆️🟥
+⬆️🟥
+⬆️🟥
+⬆️🟥
+⬆️🟥
+✅
+`;
+
 const sampleNearWin = `
 Costcodle #95 X/6
 ⬆️🟥
@@ -45,6 +60,16 @@ describe("Costcodle", () => {
     {
       name: "sampleOddRowWin",
       input: sampleOddRowWin,
+      expectedScore: GameScore.Win,
+    },
+    {
+      name: "sampleShortWin",
+      input: sampleShortWin,
+      expectedScore: GameScore.Win,
+    },
+    {
+      name: "sampleLongWin",
+      input: sampleLongWin,
       expectedScore: GameScore.Win,
     },
     {
