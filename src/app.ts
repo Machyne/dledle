@@ -1,5 +1,6 @@
 import { ALLOWED_MISSES, todaysGames } from "./gameList";
 import { GameManager } from "./gameManager";
+import { Analytics } from "./ui/analytics";
 import { showFullDleList } from "./ui/fullDleList";
 import { GameController } from "./ui/gameController";
 import { setupGameStats } from "./ui/gameStats";
@@ -22,6 +23,7 @@ window.addEventListener("DOMContentLoaded", function () {
   }
   const games = todaysGames();
   const gameNumber = currentGameNumber();
+  Analytics.sendForToday(gameNumber);
   let manager = Store.getInProgressGame(gameNumber);
   if (!manager) {
     manager = new GameManager();

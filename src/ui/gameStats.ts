@@ -31,7 +31,10 @@ function addGameToStatsByGame(statsByGame: FullStats["statsByGame"], gameName: s
   }
 }
 
-function makeStats(completedGames: Array<GameManager>, currentGameNumber: number): FullStats {
+export function makeStats(
+  completedGames: Array<GameManager>,
+  currentGameNumber: number,
+): FullStats {
   const statsByGame: FullStats["statsByGame"] = {};
   let gamesPlayed: number = 0;
   let gamesWon: number = 0;

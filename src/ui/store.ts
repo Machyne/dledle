@@ -50,6 +50,34 @@ export class Store {
     return settingsWithDefaults(JSON.parse(savedSettings));
   }
 
+  static getID(): string | null {
+    let id = localStorage.getItem("id") || "";
+    if (id) {
+      return id;
+    }
+    try {
+      id = crypto.randomUUID();
+      localStorage.setItem("id", id);
+      return id;
+    } catch (e) {
+      console.error("could not create id", e);
+      return null;
+    }
+  }
+
+  static hasSentAnalyticsFor(gameNumber: number) {
+    const existingSave = localStorage.getItem("sentAnalytics");
+    const sentAnalytics = existingSave ? (JSON.parse(existingSave) as Array<number>) : [];
+    return sentAnalytics.includes(gameNumber);
+  }
+
+  static setSentAnalyticsFor(gameNumber: number) {
+    const existingSave = localStorage.getItem("sentAnalytics");
+    const sentAnalytics = existingSave ? (JSON.parse(existingSave) as Array<number>) : [];
+    sentAnalytics.push(gameNumber);
+    localStorage.setItem("sentAnalytics", JSON.stringify(sentAnalytics));
+  }
+
   static isFirstPlay(): boolean {
     return !localStorage.getItem("hasPlayed");
   }
@@ -59,8 +87,6 @@ export class Store {
   }
 
   static saveCompletedGame(manager: GameManager) {
-    // Save this for now, probably use it for stats later.
-    // The encoding is tiny so I'm not concerned about wasting storage.
     const existingSave = localStorage.getItem("completedGames");
     const completedGames = existingSave ? (JSON.parse(existingSave) as CompletedGames) : {};
     completedGames[manager.gameNumber] = {
