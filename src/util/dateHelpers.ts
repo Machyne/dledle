@@ -40,3 +40,12 @@ export function currentOfficialDate(): DateParts {
   );
   return { year, month, day };
 }
+
+export const date224Re = "\\d{1,2}/\\d{1,2}/\\d{4}";
+export function dateFromStrings(strs: { year: string; month: string; day: string }): DateParts {
+  return {
+    year: parseInt(strs.year),
+    month: parseInt(strs.month),
+    day: parseInt(strs.day),
+  };
+}

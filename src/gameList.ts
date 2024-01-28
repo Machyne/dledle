@@ -2,9 +2,11 @@ import seedrandom from "seedrandom";
 
 import { BaseGame } from "./baseGame";
 import { Artle } from "./games/artle";
+import { Bandle } from "./games/bandle";
 import { Costcodle } from "./games/costcodle";
 import { CultureTag } from "./games/cultureTag";
 import { Framed } from "./games/framed";
+import { Gamedle } from "./games/gamedle";
 import { GuessTheGame } from "./games/guessTheGame";
 import { Listed } from "./games/listed";
 import { Murdle } from "./games/murdle";
@@ -37,6 +39,8 @@ export const allGames: Array<GameAndDate> = [
   // Added after launch:
   [new CultureTag(), ymd(2024, 1, 2)],
   [new Swiftle(), ymd(2024, 1, 2)],
+  [new Bandle(), ymd(2024, 1, 28)],
+  [new Gamedle(), ymd(2024, 1, 28)],
 ];
 
 export function validGamesToday() {

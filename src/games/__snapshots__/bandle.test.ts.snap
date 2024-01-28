@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bandle serialized data should match snapshot 1`] = `
+{
+  "sampleEarlyWin": {
+    "score": "Win",
+    "serializedResult": "w5AAA",
+  },
+  "sampleEarlyWin trimmed": {
+    "score": "Win",
+    "serializedResult": "w5AAA",
+  },
+  "sampleEarlyWin with extra link text": {
+    "score": "Win",
+    "serializedResult": "w5AAA",
+  },
+  "sampleLateWin": {
+    "score": "Win",
+    "serializedResult": "15AIC",
+  },
+  "sampleLoss": {
+    "score": "Loss",
+    "serializedResult": "25AsF",
+  },
+  "sampleNearWin": {
+    "score": "NearWin",
+    "serializedResult": "25ApE",
+  },
+  "sampleSkipLoss": {
+    "score": "Loss",
+    "serializedResult": "25ABA",
+  },
+  "sampleSkipWin": {
+    "score": "Win",
+    "serializedResult": "z5ATA",
+  },
+}
+`;
