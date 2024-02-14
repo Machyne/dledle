@@ -12,12 +12,13 @@ type VRUnion = GameResultOrSkip | null;
 
 const resultChars = {
   win: emojiSquares.green,
+  bonusWin: "⭐️",
   nearWin: emojiSquares.yellow,
+  bonusNearWin: "🌑",
   loss: emojiSquares.red,
+  bonusLoss: emojiSquares.black,
   skip: "❌",
   noResultYet: "❔",
-  bonusWin: "⭐️",
-  bonusNonWin: emojiSquares.black,
   streakFlame: "🔥",
 };
 
@@ -161,22 +162,24 @@ export class GameManager {
       if (result === null && !skipRemaining) {
         ret += resultChars.noResultYet;
       } else if ((result === null && skipRemaining) || result === SKIP) {
-        ret += hasWon ? resultChars.bonusNonWin : resultChars.skip;
+        ret += resultChars.skip;
       } else {
         const score = (result as GameResult).score;
-        if (hasWon) {
-          ret += score === GameScore.Win ? resultChars.bonusWin : resultChars.bonusNonWin;
-        } else {
-          if (score === GameScore.Win) {
-            winsSoFar++;
-          }
-          ret +=
-            score === GameScore.Win
-              ? resultChars.win
-              : score === GameScore.NearWin
-                ? resultChars.nearWin
-                : resultChars.loss;
+        if (score === GameScore.Win) {
+          winsSoFar++;
         }
+        ret +=
+          score === GameScore.Win
+            ? hasWon
+              ? resultChars.bonusWin
+              : resultChars.win
+            : score === GameScore.NearWin
+              ? hasWon
+                ? resultChars.bonusNearWin
+                : resultChars.nearWin
+              : hasWon
+                ? resultChars.bonusLoss
+                : resultChars.loss;
       }
     }
     return ret;

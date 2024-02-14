@@ -114,6 +114,7 @@ export class GameController {
       console.error("No shared scores element");
       return;
     }
+    el.innerHTML = "";
     displayFullScores(this.manager, el, this.shareUrl);
     // This must exist; the above selector checks for this ID.
     show("full-results-modal");
