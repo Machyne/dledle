@@ -15,12 +15,12 @@
   "license": "ISC",
   "devDependencies": {
     "@chialab/esbuild-plugin-html": "^0.17.3",
-    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/jest": "^29.5.11",
     "esbuild": "^0.19.10",
     "jest": "^29.7.0",
     "mockdate": "^3.0.5",
     "prettier": "^3.1.1",
+    "prettier-plugin-organize-imports": "^3.2.4",
     "ts-jest": "^29.1.1",
     "typescript": "^5.3.3"
   },
@@ -34,14 +34,8 @@
     "useTabs": false,
     "printWidth": 100,
     "plugins": [
-      "@trivago/prettier-plugin-sort-imports"
-    ],
-    "importOrderSeparation": true,
-    "importOrder": [
-      "<THIRD_PARTY_MODULES>",
-      "^[./]"
-    ],
-    "importOrderSortSpecifiers": true
+      "prettier-plugin-organize-imports"
+    ]
   },
   "esbuild": {
     "minify": true,

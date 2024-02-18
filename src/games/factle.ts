@@ -1,12 +1,6 @@
 import { BaseGame, GameScore } from "../baseGame";
 import { DEFAULT_WORD_WIDTH, intToBase64, nextInt } from "../util/base64";
-import {
-  emojiSquares,
-  emojiToRegexUnion,
-  fiveSquaresRegex,
-  listToValueMap,
-  splitEmojiLines,
-} from "../util/emoji";
+import { emojiSquares, emojiToRegexUnion, listToValueMap, splitEmojiLines } from "../util/emoji";
 import { b64ToEmojiRows, emojiRowsToB64 } from "../util/gameHelpers";
 
 const rowsPerB64Word = 2;
