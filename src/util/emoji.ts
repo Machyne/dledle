@@ -52,12 +52,13 @@ export const emojiCircles = {
   red: "🔴" as const,
 };
 
+export const listToValueMap = (list: Array<string>) =>
+  Object.fromEntries(list.map((key, idx) => [key, idx]));
+
 const numbers = "0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣";
 export const numberEmoji = splitEmoji(numbers);
 export const numberEmojiRegex = emojiToRegexUnion(numberEmoji);
-export const numberEmojiValues: Record<string, number> = Object.fromEntries(
-  numberEmoji.map((key, idx) => [key, idx]),
-);
+export const numberEmojiValues = listToValueMap(numberEmoji);
 export function emojiToNumber(emoji: Array<string>) {
   return emoji.reduce((sum, numEmoji) => 10 * sum + numberEmojiValues[numEmoji], 0);
 }

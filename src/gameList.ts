@@ -5,6 +5,7 @@ import { Artle } from "./games/artle";
 import { Bandle } from "./games/bandle";
 import { Costcodle } from "./games/costcodle";
 import { CultureTag } from "./games/cultureTag";
+import { Factle } from "./games/factle";
 import { Framed } from "./games/framed";
 import { Gamedle } from "./games/gamedle";
 import { GuessTheGame } from "./games/guessTheGame";
@@ -41,6 +42,7 @@ export const allGames: Array<GameAndDate> = [
   [new Swiftle(), ymd(2024, 1, 2)],
   [new Bandle(), ymd(2024, 1, 28)],
   [new Gamedle(), ymd(2024, 1, 28)],
+  [new Factle(), ymd(2024, 2, 19)],
 ];
 
 export function validGamesToday() {

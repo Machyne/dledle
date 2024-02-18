@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Factle serialized data should match snapshot 1`] = `
+{
+  "sampleEarlyWin": {
+    "score": "Win",
+    "serializedResult": "kHA",
+  },
+  "sampleEvenRowWin": {
+    "score": "Win",
+    "serializedResult": "hwc",
+  },
+  "sampleEvenRowWin trimmed": {
+    "score": "Win",
+    "serializedResult": "hwc",
+  },
+  "sampleEvenRowWin with extra link text": {
+    "score": "Win",
+    "serializedResult": "hwc",
+  },
+  "sampleFullText": {
+    "score": "Win",
+    "serializedResult": "1CA5tAkHA",
+  },
+  "sampleLateWin": {
+    "score": "Win",
+    "serializedResult": "1CA5tAkHA",
+  },
+  "sampleLoss": {
+    "score": "Loss",
+    "serializedResult": "PVKXFAOEA",
+  },
+  "sampleNearWin": {
+    "score": "NearWin",
+    "serializedResult": "TpE5WOyDA",
+  },
+}
+`;
