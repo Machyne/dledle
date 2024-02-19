@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Birdle serialized data should match snapshot 1`] = `
+{
+  "sampleEarlyWin": {
+    "score": "Win",
+    "serializedResult": "kMBAA",
+  },
+  "sampleEarlyWin trimmed": {
+    "score": "Win",
+    "serializedResult": "kMBAA",
+  },
+  "sampleEarlyWin with extra link text": {
+    "score": "Win",
+    "serializedResult": "kMBAA",
+  },
+  "sampleLateWin": {
+    "score": "Win",
+    "serializedResult": "pMBUA",
+  },
+  "sampleLoss": {
+    "score": "Loss",
+    "serializedResult": "qMBWA",
+  },
+  "sampleNearWin": {
+    "score": "NearWin",
+    "serializedResult": "qMBau",
+  },
+}
+`;

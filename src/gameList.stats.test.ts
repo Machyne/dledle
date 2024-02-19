@@ -2,9 +2,9 @@ import { gamesForGameNumber } from "./gameList";
 
 xtest("gameList stats", () => {
   const pickedGames: Record<string, number> = {};
-  const start = 20;
-  const end = 100;
-  for (let i = 20; i < 100; ++i) {
+  const start = 60;
+  const end = start + 100;
+  for (let i = start; i < end; ++i) {
     const games = gamesForGameNumber(i);
     for (const game of games) {
       pickedGames[game.name] = (pickedGames[game.name] || 0) + 1;
