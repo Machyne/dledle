@@ -22,10 +22,7 @@ export class Wordle extends BaseGame {
   }
 
   _buildResultRegex(): RegExp {
-    return new RegExp(
-      `Wordle (\\d+) ([1-6X])\\/6(\\*?)\\s+((?:${fiveSquaresRegex}\\s*){1,6})`,
-      "u",
-    );
+    return new RegExp(`Wordle (\\d+) ([1-6X])/6(\\*?)\\s+((?:${fiveSquaresRegex}\\s*){1,6})`, "u");
   }
 
   serializeResult(gameResult: RegExpMatchArray) {

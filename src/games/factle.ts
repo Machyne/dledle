@@ -1,5 +1,5 @@
 import { BaseGame, GameScore } from "../baseGame";
-import { DEFAULT_WORD_WIDTH, intToBase64, nextInt } from "../util/base64";
+import { DEFAULT_WORD_WIDTH } from "../util/base64";
 import { emojiSquares, emojiToRegexUnion, listToValueMap, splitEmojiLines } from "../util/emoji";
 import { b64ToEmojiRows, emojiRowsToB64 } from "../util/gameHelpers";
 
@@ -20,7 +20,7 @@ export class Factle extends BaseGame {
   _buildResultRegex(): RegExp {
     const fiveHints = emojiToRegexUnion(hintEmoji) + "{5}";
     return new RegExp(
-      `Factle.app #2 ([1-5])\\/5.*\\s+(?:\\w.*\\s+)?((?:${fiveHints}\\s*){1,5})`,
+      `Factle.app #2 ([1-5])/5.*\\s+(?:\\w.*\\s+)?((?:${fiveHints}\\s*){1,5})`,
       "u",
     );
   }

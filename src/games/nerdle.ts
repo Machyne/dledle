@@ -25,7 +25,7 @@ export class Nerdle extends BaseGame {
 
   _buildResultRegex(): RegExp {
     return new RegExp(
-      `nerdlegame (\\d+) ([1-6X])\\/6\\s+((?:${emojiToRegexUnion(squareList)}{8}\\s*){1,6})`,
+      `nerdlegame (\\d+) ([1-6X])/6\\s+((?:${emojiToRegexUnion(squareList)}{8}\\s*){1,6})`,
       "u",
     );
   }

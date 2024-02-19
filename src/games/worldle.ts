@@ -28,7 +28,7 @@ export class Worldle extends BaseGame {
   _buildResultRegex(): RegExp {
     const guessStr = fiveSquaresRegex + emojiToRegexUnion(arrowsOrWin);
     return new RegExp(
-      `#Worldle #(\\d+) ([1-6X])\\/6 \\((\\d{1,3}%)\\)\\s+((?:${guessStr}\\s*){1,6})`,
+      `#Worldle #(\\d+) ([1-6X])/6 \\((\\d{1,3}%)\\)\\s+((?:${guessStr}\\s*){1,6})`,
       "u",
     );
   }

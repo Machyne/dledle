@@ -15,6 +15,7 @@ import { Murdle } from "./games/murdle";
 import { Nerdle } from "./games/nerdle";
 import { Swiftle } from "./games/swiftle";
 import { Tradle } from "./games/tradle";
+import { Travle } from "./games/travle";
 import { Wordle } from "./games/wordle";
 import { Worldle } from "./games/worldle";
 import {
@@ -45,6 +46,7 @@ export const allGames: Array<GameAndDate> = [
   [new Gamedle(), ymd(2024, 1, 28)],
   [new Factle(), ymd(2024, 2, 19)],
   [new Connections(), ymd(2024, 2, 19)],
+  [new Travle(), ymd(2024, 2, 20)],
 ];
 
 export function validGamesToday() {

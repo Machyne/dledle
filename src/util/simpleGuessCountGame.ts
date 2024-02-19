@@ -1,4 +1,4 @@
-import { BaseGame, GameScore } from "../baseGame";
+import { GameScore } from "../baseGame";
 import { DEFAULT_WORD_WIDTH, intToBase64, nextInt } from "../util/base64";
 import { emojiSquares, emojiToRegexUnion, splitEmoji } from "../util/emoji";
 

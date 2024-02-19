@@ -39,6 +39,7 @@ export const emojiSquares = {
   black: "⬛" as const,
   white: "⬜" as const,
   yellow: "🟨" as const,
+  orange: "🟧" as const,
   green: "🟩" as const,
   red: "🟥" as const,
   purple: "🟪" as const,

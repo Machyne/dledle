@@ -24,10 +24,7 @@ export class Bandle extends BaseGame {
       emojiSquares.green,
       emojiSquares.white,
     ]);
-    return new RegExp(
-      `Bandle #(\\d+) ([1-6Xx])\\/6\\s+((?:${squareRegex}\\s*){${maxGuesses}})`,
-      "u",
-    );
+    return new RegExp(`Bandle #(\\d+) ([1-6Xx])/6\\s+((?:${squareRegex}\\s*){${maxGuesses}})`, "u");
   }
 
   serializeResult(gameResult: RegExpMatchArray) {
