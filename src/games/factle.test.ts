@@ -31,6 +31,15 @@ Factle.app #2 5/5
 🐱🐱🐱🐱🐱
 `;
 
+const sampleNearWinLastRowWrong = `
+Factle.app #2 5/5
+⬛⬛🐱🐱⬛
+⬛🐱🐱🐱⬛
+🐱🐱🐱🐱⬛
+🐸🐸🐸🐸⬛
+🐱⬛⬛⬛⬛
+`;
+
 const sampleLoss = `
 Factle.app #2 5/5
 ⬛⬛🐸⬛⬛
@@ -87,6 +96,11 @@ describe("Factle", () => {
     {
       name: "sampleNearWin",
       input: sampleNearWin,
+      expectedScore: GameScore.NearWin,
+    },
+    {
+      name: "sampleNearWinLastRowWrong",
+      input: sampleNearWinLastRowWrong,
       expectedScore: GameScore.NearWin,
     },
     {

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cloudle serialized data should match snapshot 1`] = `
+{
+  "sampleEarlyWin": {
+    "score": "Win",
+    "serializedResult": "kHA",
+  },
+  "sampleFullText": {
+    "score": "Win",
+    "serializedResult": "HnJJUWkHA",
+  },
+  "sampleLateWin": {
+    "score": "Win",
+    "serializedResult": "d3ZBAAttc",
+  },
+  "sampleLateWin trimmed": {
+    "score": "Win",
+    "serializedResult": "d3ZBAAttc",
+  },
+  "sampleLateWin with extra link text": {
+    "score": "Win",
+    "serializedResult": "d3ZBAAttc",
+  },
+  "sampleLoss": {
+    "score": "Loss",
+    "serializedResult": "BAA3JSBPA",
+  },
+  "sampleNearWin0": {
+    "score": "NearWin",
+    "serializedResult": "dHABAATQC",
+  },
+  "sampleNearWin1": {
+    "score": "NearWin",
+    "serializedResult": "BAAhHATQC",
+  },
+}
+`;

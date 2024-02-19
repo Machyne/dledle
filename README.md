@@ -34,8 +34,8 @@ $ npm run serve
 
 * The game should add something new.
   * Ex: [Airportle](https://www.going.com/airportle) is great but doesn't add a new mechanic since we already have Wordle.
-* The full share text has to be easily encoded into a short string so the Dledle share link doesn't take up the whole group chat.
-  * Ex: [Cloudle](https://cloudle.app/) would be an excellent addition, but the share text uses hard-to-encode city names instead of game numbers.
+* The full share text has to be easily encoded into a short string so the Dledle share link doesn't take up the whole group chat. I am fine with allowing a dle in even if it means ignoring some flavor text in the share though (ex Factle, Cloudle)
+  * Ex: Quordle (various clones) might be an okay addition, but the share text is very long.
 * The game should be fun to play more than once, broadly appropriate, and not too long. Playing Dledle requires playing at least 3 games.
   * Ex: [Semantle](https://semantle.com/) is very challenging and takes a long time.
   * Ex: [Letterle](https://edjefferson.com/letterle/) is funny but doesn't have replayability.

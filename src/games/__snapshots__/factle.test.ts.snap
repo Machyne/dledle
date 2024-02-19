@@ -34,5 +34,9 @@ exports[`Factle serialized data should match snapshot 1`] = `
     "score": "NearWin",
     "serializedResult": "TpE5WOyDA",
   },
+  "sampleNearWinLastRowWrong": {
+    "score": "NearWin",
+    "serializedResult": "TpExgJCAA",
+  },
 }
 `;
