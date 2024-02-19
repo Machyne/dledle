@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connections serialized data should match snapshot 1`] = `
+{
+  "sampleEarlyWin": {
+    "score": "Win",
+    "serializedResult": "8DRj",
+  },
+  "sampleFakeNearWin": {
+    "score": "Loss",
+    "serializedResult": "8DECpBC7uP",
+  },
+  "sampleLateWin": {
+    "score": "Win",
+    "serializedResult": "8Dy8nzW6DA",
+  },
+  "sampleLateWin trimmed": {
+    "score": "Win",
+    "serializedResult": "8Dy8nzW6DA",
+  },
+  "sampleLateWin with extra link text": {
+    "score": "Win",
+    "serializedResult": "8Dy8nzW6DA",
+  },
+  "sampleLoss": {
+    "score": "Loss",
+    "serializedResult": "8DAAphWjNW",
+  },
+  "sampleNearWin": {
+    "score": "NearWin",
+    "serializedResult": "8DECpBC7uO",
+  },
+}
+`;
