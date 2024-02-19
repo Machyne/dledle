@@ -69,6 +69,10 @@ a:hover {
   color: var(--link-color-hover);
 }
 
+.share-link {
+  overflow-wrap: anywhere;
+}
+
 header {
   display: flex;
   flex-shrink: 1;

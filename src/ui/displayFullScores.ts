@@ -50,7 +50,7 @@ export function displayFullScores(
   if (shareLink) {
     const share = document.createElement("p");
     share.classList.add("game-container");
-    share.innerHTML = `SharingLink link: <a href="${shareLink}">${shareLink}</a>`;
+    share.innerHTML = `Sharing link: <a class="share-link" href="${shareLink}">${shareLink}</a>`;
     container.appendChild(share);
   }
 }
