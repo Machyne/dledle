@@ -15,7 +15,7 @@ export class Cloudle extends BaseGame {
   }
 
   get link(): string {
-    return "https://factle.app/";
+    return "https://cloudle.app/";
   }
 
   _buildResultRegex(): RegExp {

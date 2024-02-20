@@ -20,6 +20,10 @@ describe("gameList", () => {
     expect(allGames.length).toEqual(new Set(allGames.map((g) => g[0].fileName)).size);
   });
 
+  test("all games should have unique links", () => {
+    expect(allGames.length).toEqual(new Set(allGames.map((g) => g[0].link)).size);
+  });
+
   describe("all games should have image files", () => {
     for (const [game] of allGames) {
       test(game.name, () => {
