@@ -73,22 +73,22 @@ export function makeStats(
         winStreaks.push(currentWinStreak);
         currentWinStreak = [manager.gameNumber];
       }
+    }
 
-      // Handle results by game
-      for (const [game, result] of manager.gamesAndResults()) {
-        addGameToStatsByGame(statsByGame, game.name);
-        const stats = statsByGame[game.name];
-        if (result === SKIP) {
-          ++stats.skips;
+    // Handle results by game
+    for (const [game, result] of manager.gamesAndResults()) {
+      addGameToStatsByGame(statsByGame, game.name);
+      const stats = statsByGame[game.name];
+      if (result === SKIP) {
+        ++stats.skips;
+      } else {
+        const gr = result as GameResult;
+        if (gr.score === GameScore.Win) {
+          ++stats.wins;
+        } else if (gr.score === GameScore.NearWin) {
+          ++stats.nearWins;
         } else {
-          const gr = result as GameResult;
-          if (gr.score === GameScore.Win) {
-            ++stats.wins;
-          } else if (gr.score === GameScore.NearWin) {
-            ++stats.nearWins;
-          } else {
-            ++stats.losses;
-          }
+          ++stats.losses;
         }
       }
     }
