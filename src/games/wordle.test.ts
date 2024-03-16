@@ -39,6 +39,23 @@ Wordle 123 X/6*
 ⬛🟩🟩🟩🟨
 `;
 
+const sampleWithWithoutComma = [
+  `
+Wordle 1,001 3/6*
+
+⬛⬛⬛🟩🟨
+🟩🟩🟩🟩⬛
+🟩🟩🟩🟩🟩
+`,
+  `
+Wordle 1001 3/6*
+
+⬛⬛⬛🟩🟨
+🟩🟩🟩🟩⬛
+🟩🟩🟩🟩🟩
+`,
+];
+
 describe("Wordle", () => {
   runGameTests(new Wordle(), [
     {
@@ -63,7 +80,17 @@ describe("Wordle", () => {
       name: "sampleLoss",
       input: sampleLoss,
       expectedScore: GameScore.Loss,
-      expectedOutput: sampleLoss.trim().replace(/⬜/gu, "⬛"),
+    },
+    {
+      name: "sampleWithComma",
+      input: sampleWithWithoutComma[0],
+      expectedScore: GameScore.Win,
+    },
+    {
+      name: "sampleWithoutComma",
+      input: sampleWithWithoutComma[1],
+      expectedScore: GameScore.Win,
+      expectedOutput: sampleWithWithoutComma[0].trim(),
     },
   ]);
 });

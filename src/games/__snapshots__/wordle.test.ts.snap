@@ -26,5 +26,13 @@ exports[`Wordle serialized data should match snapshot 1`] = `
     "score": "Win",
     "serializedResult": "tHABmckHA",
   },
+  "sampleWithComma": {
+    "score": "Win",
+    "serializedResult": "n-AvjJkHA",
+  },
+  "sampleWithoutComma": {
+    "score": "Win",
+    "serializedResult": "n-AvjJkHA",
+  },
 }
 `;

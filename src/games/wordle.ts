@@ -22,7 +22,10 @@ export class Wordle extends BaseGame {
   }
 
   _buildResultRegex(): RegExp {
-    return new RegExp(`Wordle (\\d+) ([1-6X])/6(\\*?)\\s+((?:${fiveSquaresRegex}\\s*){1,6})`, "u");
+    return new RegExp(
+      `Wordle ([0-9,]+) ([1-6X])/6(\\*?)\\s+((?:${fiveSquaresRegex}\\s*){1,6})`,
+      "u",
+    );
   }
 
   serializeResult(gameResult: RegExpMatchArray) {
@@ -30,7 +33,9 @@ export class Wordle extends BaseGame {
     const isWin = gameScore !== "X";
     const numGuesses = isWin ? parseInt(gameScore) : 6;
     // First encode the game number, win-or-not, and star-or-not.
-    let encoded = intToBase64(4 * parseInt(gameNumber) + (hasStar ? 2 : 0) + (isWin ? 1 : 0));
+    let encoded = intToBase64(
+      4 * parseInt(gameNumber.replace(/,/g, "")) + (hasStar ? 2 : 0) + (isWin ? 1 : 0),
+    );
     // Next encode the guesses.
     const guesses = splitEmojiLines(guessesBlock);
     if (guesses.length !== numGuesses) {
@@ -69,8 +74,8 @@ export class Wordle extends BaseGame {
       rowsPerB64Word,
     });
     serializedResult = sr;
-    return `Wordle ${gameNumber} ${isWin ? guesses.length.toString() : "X"}/6${
-      hasStar ? "*" : ""
-    }\n\n${guesses.join("\n")}`;
+    return `Wordle ${gameNumber.toLocaleString("en-US")} ${
+      isWin ? guesses.length.toString() : "X"
+    }/6${hasStar ? "*" : ""}\n\n${guesses.join("\n")}`;
   }
 }
