@@ -1,5 +1,12 @@
 import { BaseGame, GameScore } from "../baseGame";
-import { DEFAULT_WORD_WIDTH, intToBase64, nextInt } from "../util/base64";
+import {
+  DEFAULT_WORD_WIDTH,
+  datePartsToBase64,
+  intToBase64,
+  nextDateParts,
+  nextInt,
+} from "../util/base64";
+import { DateParts, dateFromStrings } from "../util/dateHelpers";
 import {
   emojiToRegexUnion,
   fiveSquaresRegex,
@@ -27,21 +34,38 @@ export class Worldle extends BaseGame {
 
   _buildResultRegex(): RegExp {
     const guessStr = fiveSquaresRegex + emojiToRegexUnion(arrowsOrWin);
-    return new RegExp(
-      `#Worldle #(\\d+) ([1-6X])/6 \\((\\d{1,3}%)\\)\\s+((?:${guessStr}\\s*){1,6})`,
-      "u",
-    );
+    const optionalDatePart = "(\\(\\d{2}.\\d{2}.\\d{4}\\) )?";
+    const percentPart = "\\((\\d{1,3}%)\\)";
+    const introLine = `#Worldle #(\\d+) ${optionalDatePart}([1-6X])/6 ${percentPart}`;
+    return new RegExp(`${introLine}\\s+((?:${guessStr}\\s*){1,6})`, "u");
   }
 
   serializeResult(gameResult: RegExpMatchArray) {
-    const [, gameNumber, numGuessesStr, percentStr, guessesBlock] = gameResult;
+    const [, gameNumber, optionalDate, numGuessesStr, percentStr, guessesBlock] = gameResult;
     const isWin = numGuessesStr !== "X";
 
     // First encode the game number, num guesses, and percent score.
-    const percent = parseInt(percentStr);
+    let percent = parseInt(percentStr);
+    // Date is a new addition, encode it as a score greater than 100.
+    if (optionalDate) {
+      percent += 101;
+    }
     let encoded = intToBase64(parseInt(gameNumber));
     const numGuesses = isWin ? parseInt(numGuessesStr) : 6;
     encoded += intToBase64(percent * 12 + (numGuesses - 1) * 2 + (isWin ? 1 : 0));
+    if (optionalDate) {
+      const datePartStrs = optionalDate.match(/(\d+)/g);
+      if (!datePartStrs || datePartStrs.length !== 3) {
+        throw new Error(`Invalid date: ${optionalDate} - ${datePartStrs}`);
+      }
+      encoded += datePartsToBase64(
+        dateFromStrings({
+          day: datePartStrs[0],
+          month: datePartStrs[1],
+          year: datePartStrs[2],
+        }),
+      );
+    }
     const guesses = splitEmojiLines(guessesBlock);
     if (guesses.length !== numGuesses) {
       throw new Error(`Expected ${numGuesses} guesses, got ${guesses.length}`);
@@ -85,7 +109,13 @@ export class Worldle extends BaseGame {
     intResult = Math.floor(intResult / 2);
     const numGuesses = (intResult % 6) + 1;
     intResult = Math.floor(intResult / 6);
-    const percent = intResult;
+    let percent = intResult;
+
+    let date: DateParts | null = null;
+    if (percent > 100) {
+      percent -= 101;
+      [date, serializedResult] = nextDateParts(serializedResult);
+    }
 
     // Then decode the guess rows.
     const guesses: string[] = [];
@@ -104,8 +134,12 @@ export class Worldle extends BaseGame {
         guesses.push(makeGuess(secondGuess));
       }
     }
-    return `#Worldle #${gameNumber} ${isWin ? numGuesses : "X"}/6 (${percent}%)\n${guesses.join(
-      "\n",
-    )}`;
+    return `#Worldle #${gameNumber} ${
+      date
+        ? `(${date.day.toString().padStart(2, "0")}.${date.month.toString().padStart(2, "0")}.${
+            date.year
+          }) `
+        : ""
+    }${isWin ? numGuesses : "X"}/6 (${percent}%)\n${guesses.join("\n")}`;
   }
 }

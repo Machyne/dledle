@@ -2,6 +2,14 @@
 
 exports[`Worldle serialized data should match snapshot 1`] = `
 {
+  "newFormatNearWin": {
+    "score": "NearWin",
+    "serializedResult": "eMAukACHDk-BgJCB6B",
+  },
+  "newFormatWin": {
+    "score": "Win",
+    "serializedResult": "eMAtlACHDiBA",
+  },
   "sampleEvenRowWin": {
     "score": "Win",
     "serializedResult": "9KAzSAwYC",

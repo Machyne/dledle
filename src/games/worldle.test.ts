@@ -37,6 +37,21 @@ const sampleLoss = `
 🟩🟩🟩⬛⬛⬅️
 `;
 
+const newFormatWin = `
+#Worldle #798 (29.03.2024) 1/6 (100%)
+🟩🟩🟩🟩🟩🎉
+`;
+
+const newFormatNearWin = `
+#Worldle #798 (29.03.2024) X/6 (94%)
+🟩🟩🟩🟩🟨⬆️
+🟩🟩🟩🟩🟨⬆️
+🟩🟩🟩🟩🟨↖️
+🟩🟩🟩🟩🟨↖️
+🟩🟩🟩🟩🟨↙️
+🟩🟩🟩🟩⬛↙️
+`;
+
 describe("Worldle", () => {
   runGameTests(new Worldle(), [
     {
@@ -58,6 +73,16 @@ describe("Worldle", () => {
       name: "sampleLoss",
       input: sampleLoss,
       expectedScore: GameScore.Loss,
+    },
+    {
+      name: "newFormatWin",
+      input: newFormatWin,
+      expectedScore: GameScore.Win,
+    },
+    {
+      name: "newFormatNearWin",
+      input: newFormatNearWin,
+      expectedScore: GameScore.NearWin,
     },
   ]);
 });
