@@ -6,7 +6,7 @@ import {
   nextDateParts,
   nextInt,
 } from "../util/base64";
-import { DateParts, date224Re, dateFromStrings } from "../util/dateHelpers";
+import { DateParts, date224Re, dateFromStrings, zeroPadDate } from "../util/dateHelpers";
 import { emojiSquares, emojiToRegexUnion, splitEmoji } from "../util/emoji";
 
 const prefixEmoji = "🕹️";
@@ -62,8 +62,7 @@ export class Gamedle extends BaseGame {
       emoji += emojiSquares.green;
       emoji += emojiSquares.white.repeat(maxGuesses - wrongGuesses - 1);
     }
-    return `${prefixEmoji} Gamedle: ${date.day.toString().padStart(2, "0")}/${date.month
-      .toString()
-      .padStart(2, "0")}/${date.year} ${emoji}`;
+    const { yyyy, mm, dd } = zeroPadDate(date);
+    return `${prefixEmoji} Gamedle: ${dd}/${mm}/${yyyy} ${emoji}`;
   }
 }

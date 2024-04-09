@@ -1,48 +1,44 @@
 import { GameScore } from "../baseGame";
 import { runGameTests } from "../util/testUtils";
-import { Birdle } from "./birdle";
+import { V0Birdle } from "./v0_birdle";
 
 const sampleEarlyWin = `
-World Birdle
-2024-04-08
+Birdle #700 1/6
 🐦🐦🐦🐦
 `;
 
 const sampleLateWin = `
-World Birdle
-2024-04-08
-🐦🐦❌❌
-🐦🐦❌❌
-🐦🐦❌❌
-🐦🐦❌❌
-🐦🐦🐦❌*
-🐦🐦🐦🐦*
+Birdle #700 6/6
+❌❌❌❌
+🐦❌❌❌
+🐦❌❌❌
+❌❌❌❌
+❌❌❌❌
+🐦🐦🐦🐦
 `;
 
 const sampleNearWin = `
-World Birdle
-2024-04-08
+Birdle #700 X/6
 🐦🐦❌❌
+🐦🐦❌❌
+🐦❌❌❌
 🐦🐦❌❌
 🐦🐦🐦❌
 🐦🐦❌❌
-🐦🐦❌❌
-🐦🐦❌❌*
 `;
 
 const sampleLoss = `
-World Birdle
-2024-04-08
+Birdle #700 X/6
+🐦🐦❌❌
+🐦❌❌❌
+🐦❌❌❌
 ❌❌❌❌
 ❌❌❌❌
 ❌❌❌❌
-🐦🐦❌❌*
-🐦🐦❌❌*
-🐦🐦❌❌*
 `;
 
-describe("Birdle", () => {
-  runGameTests(new Birdle(), [
+describe("V0Birdle", () => {
+  runGameTests(new V0Birdle(), [
     {
       name: "sampleEarlyWin",
       input: sampleEarlyWin,

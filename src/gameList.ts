@@ -18,6 +18,7 @@ import { Nerdle } from "./games/nerdle";
 import { Swiftle } from "./games/swiftle";
 import { Tradle } from "./games/tradle";
 import { Travle } from "./games/travle";
+import { V0Birdle } from "./games/v0_birdle";
 import { Wordle } from "./games/wordle";
 import { Worldle } from "./games/worldle";
 import {
@@ -28,8 +29,8 @@ import {
   ymd,
 } from "./util/dateHelpers";
 
-// A game and the date it was released.
-type GameAndDate = [BaseGame, DateParts];
+// A game, date it was released (inclusive), optionally the day it ended (exclusive).
+type GameAndDate = [BaseGame, DateParts, DateParts?];
 export const allGames: Array<GameAndDate> = [
   [new Artle(), FIRST_GAME_DATE],
   [new Costcodle(), FIRST_GAME_DATE],
@@ -49,8 +50,9 @@ export const allGames: Array<GameAndDate> = [
   [new Factle(), ymd(2024, 2, 19)],
   [new Connections(), ymd(2024, 2, 19)],
   [new Travle(), ymd(2024, 2, 20)],
-  [new Birdle(), ymd(2024, 2, 20)],
+  [new V0Birdle(), ymd(2024, 2, 20), ymd(2024, 4, 9)],
   [new Cloudle(), ymd(2024, 2, 20)],
+  [new Birdle(), ymd(2024, 4, 9)],
 ];
 
 export function validGamesToday() {
@@ -59,7 +61,11 @@ export function validGamesToday() {
 
 export function validGamesForGameNumber(gameNumber: number) {
   return allGames
-    .filter(([, gameStartDate]) => gameNumber >= gameNumberForDate(gameStartDate))
+    .filter(
+      ([, gameStartDate, gameEndDate]) =>
+        gameNumber >= gameNumberForDate(gameStartDate) &&
+        (!gameEndDate || gameNumber < gameNumberForDate(gameEndDate)),
+    )
     .map(([game]) => game)
     .sort((a, b) => a.name.localeCompare(b.name));
 }

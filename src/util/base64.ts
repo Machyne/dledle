@@ -89,3 +89,39 @@ export function nextDateParts(s: string): [DateParts, string] {
   const result = base64ToDateParts(s);
   return [result, s.slice(DEFAULT_WORD_WIDTH)];
 }
+
+const shortStartYear = 2022;
+// This gives a max of 2064
+const shortMaxYear =
+  shortStartYear + Math.floor(maxNumber(DEFAULT_WORD_WIDTH) / 16 / (31 * 12)) - 1;
+
+export function shortDateToBase64(d: DateParts, extra4Bits: number) {
+  if (d.year < shortStartYear || d.year > shortMaxYear) {
+    throw new Error(`Invalid year: ${d.year}`);
+  }
+  if (extra4Bits < 0 || extra4Bits > 15) {
+    throw new Error(`Invalid extra 4 bits: ${extra4Bits}`);
+  }
+  const dateNum = (d.year - shortStartYear) * 31 * 12 + (d.month - 1) * 31 + (d.day - 1);
+  return intToBase64(dateNum * 16 + extra4Bits, DEFAULT_WORD_WIDTH);
+}
+
+export function base64ToShortDate(s: string): [DateParts, number] {
+  let intResult = base64ToInt(s);
+  const extra4Bits = intResult % 16;
+  intResult = Math.floor(intResult / 16);
+  const day = (intResult % 31) + 1;
+  intResult = Math.floor(intResult / 31);
+  const month = (intResult % 12) + 1;
+  intResult = Math.floor(intResult / 12);
+  const year = intResult + shortStartYear;
+  return [{ year, month, day }, extra4Bits];
+}
+
+export function nextShortDate(s: string): [DateParts, string, number] {
+  if (s.length < DEFAULT_WORD_WIDTH) {
+    throw new Error(`${s} is not ${DEFAULT_WORD_WIDTH} characters long.`);
+  }
+  const result = base64ToShortDate(s);
+  return [result[0], s.slice(DEFAULT_WORD_WIDTH), result[1]];
+}

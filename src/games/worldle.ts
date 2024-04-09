@@ -6,7 +6,7 @@ import {
   nextDateParts,
   nextInt,
 } from "../util/base64";
-import { DateParts, dateFromStrings } from "../util/dateHelpers";
+import { DateParts, dateFromStrings, zeroPadDate } from "../util/dateHelpers";
 import {
   emojiToRegexUnion,
   fiveSquaresRegex,
@@ -134,12 +134,9 @@ export class Worldle extends BaseGame {
         guesses.push(makeGuess(secondGuess));
       }
     }
-    return `#Worldle #${gameNumber} ${
-      date
-        ? `(${date.day.toString().padStart(2, "0")}.${date.month.toString().padStart(2, "0")}.${
-            date.year
-          }) `
-        : ""
-    }${isWin ? numGuesses : "X"}/6 (${percent}%)\n${guesses.join("\n")}`;
+    const ds = date ? zeroPadDate(date) : null;
+    return `#Worldle #${gameNumber} ${ds ? `(${ds.dd}.${ds.mm}.${ds.yyyy}) ` : ""}${
+      isWin ? numGuesses : "X"
+    }/6 (${percent}%)\n${guesses.join("\n")}`;
   }
 }

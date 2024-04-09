@@ -12,16 +12,17 @@ function fileExistsCaseSensitive(filepath: string) {
 }
 
 describe("gameList", () => {
-  test("all games should have unique names", () => {
-    expect(allGames.length).toEqual(new Set(allGames.map((g) => g[0].name)).size);
+  const activeGames = allGames.filter(([, , end]) => !end);
+  test("active games should have unique names", () => {
+    expect(activeGames.length).toEqual(new Set(activeGames.map((g) => g[0].name)).size);
   });
 
-  test("all games should have unique file names", () => {
-    expect(allGames.length).toEqual(new Set(allGames.map((g) => g[0].fileName)).size);
+  test("active games should have unique file names", () => {
+    expect(activeGames.length).toEqual(new Set(activeGames.map((g) => g[0].fileName)).size);
   });
 
-  test("all games should have unique links", () => {
-    expect(allGames.length).toEqual(new Set(allGames.map((g) => g[0].link)).size);
+  test("active games should have unique links", () => {
+    expect(activeGames.length).toEqual(new Set(activeGames.map((g) => g[0].link)).size);
   });
 
   describe("all games should have image files", () => {
@@ -54,6 +55,25 @@ describe("gameList", () => {
     setMockDate(ymd(2024, 1, 2));
     expect(validGamesToday().map((game) => game.name)).toEqual(
       ["CultureTag", "Swiftle", ...launchTitles].sort(),
+    );
+    const nextList = [
+      "CultureTag",
+      "Swiftle",
+      "Bandle",
+      "Gamedle",
+      "Factle",
+      "Connections",
+      "Travle",
+      "Birdle",
+      "Cloudle",
+    ];
+    setMockDate(ymd(2024, 4, 8));
+    expect(validGamesToday().map((game) => game.name)).toEqual(
+      launchTitles.concat(nextList).sort(),
+    );
+    setMockDate(ymd(2024, 4, 9));
+    expect(validGamesToday().map((game) => game.name)).toEqual(
+      launchTitles.concat(nextList).sort(),
     );
   });
 });

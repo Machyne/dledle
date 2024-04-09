@@ -49,3 +49,11 @@ export function dateFromStrings(strs: { year: string; month: string; day: string
     day: parseInt(strs.day),
   };
 }
+
+export function zeroPadDate(date: DateParts): { yyyy: string; mm: string; dd: string } {
+  return {
+    yyyy: date.year.toString(),
+    mm: date.month.toString().padStart(2, "0"),
+    dd: date.day.toString().padStart(2, "0"),
+  };
+}

@@ -6,14 +6,12 @@ import {
   currentGameNumber,
   signedDayDifference,
   ymd,
+  zeroPadDate,
 } from "./dateHelpers";
 
 export function setMockDate(dateParts: DateParts) {
-  mockdate.set(
-    `${dateParts.year}-${dateParts.month.toString().padStart(2, "0")}-${dateParts.day
-      .toString()
-      .padStart(2, "0")}T20:00:00.000Z`,
-  );
+  const { yyyy, mm, dd } = zeroPadDate(dateParts);
+  mockdate.set(`${yyyy}-${mm}-${dd}T20:00:00.000Z`);
 }
 
 describe("dateHelpers", () => {
