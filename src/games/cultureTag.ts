@@ -1,11 +1,11 @@
 import { BaseGame, GameScore } from "../baseGame";
 import { intToBase64, nextInt } from "../util/base64";
-import { emojiCircles, emojiToRegexUnion, splitEmoji } from "../util/emoji";
+import { emojiCircles, emojiToRegexUnion, listToValueMap, splitEmoji } from "../util/emoji";
 import { decodeEmoji, encodeEmoji } from "../util/gameHelpers";
 
 const emojiPrefix = "#️⃣";
 const guessLookup = [emojiCircles.white, emojiCircles.green, emojiCircles.red, emojiCircles.yellow];
-const guessCodes = Object.fromEntries(guessLookup.map((circle, idx) => [circle, idx]));
+const guessCodes = listToValueMap(guessLookup);
 const maxGuesses = 3;
 
 export class CultureTag extends BaseGame {

@@ -3,6 +3,7 @@ import seedrandom from "seedrandom";
 import { BaseGame } from "./baseGame";
 import { Artle } from "./games/artle";
 import { Bandle } from "./games/bandle";
+import { Betweenle } from "./games/betweenle";
 import { Birdle } from "./games/birdle";
 import { Cloudle } from "./games/cloudle";
 import { Connections } from "./games/connections";
@@ -53,6 +54,7 @@ export const allGames: Array<GameAndDate> = [
   [new V0Birdle(), ymd(2024, 2, 20), ymd(2024, 4, 9)],
   [new Cloudle(), ymd(2024, 2, 20)],
   [new Birdle(), ymd(2024, 4, 9)],
+  [new Betweenle(), ymd(2024, 4, 11)],
 ];
 
 export function validGamesToday() {

@@ -1,6 +1,6 @@
 import { BaseGame, GameScore } from "../baseGame";
 import { DEFAULT_WORD_WIDTH, intToBase64, nextInt } from "../util/base64";
-import { arrows as allArrows, emojiToRegexUnion, splitEmoji } from "../util/emoji";
+import { arrows as allArrows, emojiToRegexUnion, listToValueMap, splitEmoji } from "../util/emoji";
 import { decodeEmoji, encodeEmoji } from "../util/gameHelpers";
 
 const winEmoji = "🏡";
@@ -9,9 +9,7 @@ const maxArrows = 8;
 const numArrowsEncodingBase = maxArrows + 1;
 const arrows = [allArrows.u, allArrows.d, allArrows.ur, allArrows.dr];
 const arrowRegex = emojiToRegexUnion(arrows);
-const arrowValues: Record<string, number> = Object.fromEntries(
-  arrows.map((key, idx) => [key, idx]),
-);
+const arrowValues = listToValueMap(arrows);
 
 const highestBit = 1 << (DEFAULT_WORD_WIDTH * 6 - 1);
 

@@ -12,17 +12,26 @@ export function splitEmojiLines(str: string): Array<Array<string>> {
   return splitLines.filter((line) => line.length > 0);
 }
 
+export function countEmoji(str: string | undefined, target: string): number {
+  if (!str) {
+    return 0;
+  }
+  return splitEmoji(str).filter((s) => s === target).length;
+}
+
 export function emojiToRegexUnion(emoji: Array<string>) {
   return `(?:${emoji.join("|")})`;
+}
+
+export function listToValueMap(list: Array<string>) {
+  return Object.fromEntries(list.map((key, idx) => [key, idx]));
 }
 
 export const cardinalArrowString = "⬆️➡️⬇️⬅️";
 export const ordinalArrowString = cardinalArrowString + "↗️↘️↙️↖️";
 export const cardinalArrows = splitEmoji(cardinalArrowString);
 export const ordinalArrows = splitEmoji(ordinalArrowString);
-export const ordinalArrowValues: Record<string, number> = Object.fromEntries(
-  ordinalArrows.map((key, idx) => [key, idx]),
-);
+export const ordinalArrowValues = listToValueMap(ordinalArrows);
 export const ordinalArrowRegex = emojiToRegexUnion(ordinalArrows);
 export const arrows = {
   u: "⬆️" as const,
@@ -52,9 +61,6 @@ export const emojiCircles = {
   green: "🟢" as const,
   red: "🔴" as const,
 };
-
-export const listToValueMap = (list: Array<string>) =>
-  Object.fromEntries(list.map((key, idx) => [key, idx]));
 
 const numbers = "0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣";
 export const numberEmoji = splitEmoji(numbers);

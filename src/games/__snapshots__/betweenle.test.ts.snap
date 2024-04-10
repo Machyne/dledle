@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Betweenle serialized data should match snapshot 1`] = `
+{
+  "sampleLoss": {
+    "score": "Loss",
+    "serializedResult": "KM-__",
+  },
+  "sampleWin0": {
+    "score": "Win",
+    "serializedResult": "5LtPL",
+  },
+  "sampleWin0 trimmed": {
+    "score": "Win",
+    "serializedResult": "5LtPL",
+  },
+  "sampleWin0 with extra link text": {
+    "score": "Win",
+    "serializedResult": "5LtPL",
+  },
+  "sampleWin1": {
+    "score": "Win",
+    "serializedResult": "KMAAA",
+  },
+  "sampleWin2": {
+    "score": "Win",
+    "serializedResult": "KM2HA",
+  },
+  "sampleWin3": {
+    "score": "Win",
+    "serializedResult": "KM8nH",
+  },
+  "sampleWin4": {
+    "score": "Win",
+    "serializedResult": "OM5UB",
+  },
+  "sampleWin5": {
+    "score": "Win",
+    "serializedResult": "OM9_f",
+  },
+}
+`;

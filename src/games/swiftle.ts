@@ -1,12 +1,12 @@
 import { BaseGame, GameScore } from "../baseGame";
 import { DEFAULT_WORD_WIDTH, intToBase64, nextInt } from "../util/base64";
-import { emojiSquares, emojiToRegexUnion, splitEmoji } from "../util/emoji";
+import { emojiSquares, emojiToRegexUnion, listToValueMap, splitEmoji } from "../util/emoji";
 import { decodeEmoji, encodeEmoji } from "../util/gameHelpers";
 
 const winPrefix = "🔊";
 const lossPrefix = "🔇";
 const guessSquares = [emojiSquares.black, emojiSquares.red, emojiSquares.yellow];
-const guessCodes = Object.fromEntries(guessSquares.map((square, idx) => [square, idx]));
+const guessCodes = listToValueMap(guessSquares);
 const maxGuesses = 6;
 const guessBase = maxGuesses + 1;
 const guessEncodingWidth = 2;
