@@ -4,23 +4,37 @@ import { Travle } from "./travle";
 
 const sampleWins = [
   `
-#travle #432 (6/10)
-✅✅🟧✅✅✅
+#travle #508 +0 (Perfect)
+✅✅✅✅✅✅
 `,
   `
-#travle #409 (16/18)
-🟧✅🟧✅✅🟧✅✅✅🟧✅🟧✅✅✅✅
+#travle #508 +0
+🟩✅🟩✅🟩✅
+`,
+  `
+#travle #508 +5
+✅🟧✅🟩✅🟧✅🟧🟧🟧✅
+`,
+  `
+#travle #508 +0 (3 hints)
+✅✅✅✅✅✅
 `,
 ];
 
-const sampleLoss = `
-#travle #432 (?/10) (2 away)
-🟧🟧🟧🟥🟧🟥🟧✅✅✅
-`;
+const sampleLosses = [
+  `
+#travle #508 (2 away)
+🟥🟥🟧🟥🟥🟩✅✅🟧🟧🟩
+`,
+  `
+#travle #508 (2 away) (1 hint)
+🟩🟧🟧🟩✅🟧🟧🟩🟧🟧🟧
+`,
+];
 
 const sampleNearWin = `
-#travle #432 (?/10) (1 away)
-⬛✅🟥🟧🟥✅✅✅🟧🟧
+#travle #508 (1 away)
+🟧🟩🟧🟩🟩✅✅🟧🟧🟧🟧
 `;
 
 describe("Travle", () => {
@@ -30,11 +44,11 @@ describe("Travle", () => {
       input,
       expectedScore: GameScore.Win,
     })),
-    {
-      name: "sampleLoss",
-      input: sampleLoss,
+    ...sampleLosses.map((input, idx) => ({
+      name: `sampleLoss${idx}`,
+      input,
       expectedScore: GameScore.Loss,
-    },
+    })),
     {
       name: "sampleNearWin",
       input: sampleNearWin,

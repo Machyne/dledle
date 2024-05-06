@@ -56,7 +56,7 @@ describe("gameList", () => {
     expect(validGamesToday().map((game) => game.name)).toEqual(
       ["CultureTag", "Swiftle", ...launchTitles].sort(),
     );
-    const nextList = [
+    const nextList1 = [
       "CultureTag",
       "Swiftle",
       "Bandle",
@@ -67,13 +67,18 @@ describe("gameList", () => {
       "Birdle",
       "Cloudle",
     ];
-    setMockDate(ymd(2024, 4, 8));
-    expect(validGamesToday().map((game) => game.name)).toEqual(
-      launchTitles.concat(nextList).sort(),
-    );
-    setMockDate(ymd(2024, 4, 9));
-    expect(validGamesToday().map((game) => game.name)).toEqual(
-      launchTitles.concat(nextList).sort(),
-    );
+    for (const date of [ymd(2024, 4, 8), ymd(2024, 4, 9)]) {
+      setMockDate(date);
+      expect(validGamesToday().map((game) => game.name)).toEqual(
+        launchTitles.concat(nextList1).sort(),
+      );
+    }
+    const nextList2 = ["Betweenle"];
+    for (const date of [ymd(2024, 5, 5), ymd(2024, 5, 6)]) {
+      setMockDate(date);
+      expect(validGamesToday().map((game) => game.name)).toEqual(
+        launchTitles.concat(nextList1).concat(nextList2).sort(),
+      );
+    }
   });
 });

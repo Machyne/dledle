@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`V0Travle serialized data should match snapshot 1`] = `
+{
+  "sampleLoss": {
+    "score": "Loss",
+    "serializedResult": "wGAKCqZ-D",
+  },
+  "sampleNearWin": {
+    "score": "NearWin",
+    "serializedResult": "wGAKBc2vC",
+  },
+  "sampleWin0": {
+    "score": "Win",
+    "serializedResult": "wGGKv_",
+  },
+  "sampleWin0 trimmed": {
+    "score": "Win",
+    "serializedResult": "wGGKv_",
+  },
+  "sampleWin0 with extra link text": {
+    "score": "Win",
+    "serializedResult": "wGGKv_",
+  },
+  "sampleWin1": {
+    "score": "Win",
+    "serializedResult": "ZGQSuv_u_D",
+  },
+}
+`;

@@ -2,29 +2,41 @@
 
 exports[`Travle serialized data should match snapshot 1`] = `
 {
-  "sampleLoss": {
+  "sampleLoss0": {
     "score": "Loss",
-    "serializedResult": "wGAKCqZ-D",
+    "serializedResult": "wfELAQgfJ",
+  },
+  "sampleLoss1": {
+    "score": "Loss",
+    "serializedResult": "xfELAWeZF",
   },
   "sampleNearWin": {
     "score": "NearWin",
-    "serializedResult": "wGAKBc2vC",
+    "serializedResult": "wfCLAZ6XF",
   },
   "sampleWin0": {
     "score": "Win",
-    "serializedResult": "wGGKv_",
+    "serializedResult": "wfBGA__",
   },
   "sampleWin0 trimmed": {
     "score": "Win",
-    "serializedResult": "wGGKv_",
+    "serializedResult": "wfBGA__",
   },
   "sampleWin0 with extra link text": {
     "score": "Win",
-    "serializedResult": "wGGKv_",
+    "serializedResult": "wfBGA__",
   },
   "sampleWin1": {
     "score": "Win",
-    "serializedResult": "ZGQSuv_u_D",
+    "serializedResult": "wfDGAu7",
+  },
+  "sampleWin2": {
+    "score": "Win",
+    "serializedResult": "wfNLA3eXN",
+  },
+  "sampleWin3": {
+    "score": "Win",
+    "serializedResult": "zfDGA__",
   },
 }
 `;

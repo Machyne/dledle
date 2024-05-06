@@ -20,6 +20,7 @@ import { Swiftle } from "./games/swiftle";
 import { Tradle } from "./games/tradle";
 import { Travle } from "./games/travle";
 import { V0Birdle } from "./games/v0_birdle";
+import { V0Travle } from "./games/v0_travle";
 import { Wordle } from "./games/wordle";
 import { Worldle } from "./games/worldle";
 import {
@@ -50,11 +51,12 @@ export const allGames: Array<GameAndDate> = [
   [new Gamedle(), ymd(2024, 1, 28)],
   [new Factle(), ymd(2024, 2, 19)],
   [new Connections(), ymd(2024, 2, 19)],
-  [new Travle(), ymd(2024, 2, 20)],
+  [new V0Travle(), ymd(2024, 2, 20), ymd(2024, 5, 6)],
   [new V0Birdle(), ymd(2024, 2, 20), ymd(2024, 4, 9)],
   [new Cloudle(), ymd(2024, 2, 20)],
   [new Birdle(), ymd(2024, 4, 9)],
   [new Betweenle(), ymd(2024, 4, 11)],
+  [new Travle(), ymd(2024, 5, 6)],
 ];
 
 export function validGamesToday() {
